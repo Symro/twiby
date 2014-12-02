@@ -3,6 +3,7 @@
 Twiby project
 
 1) Bundle install
+
 2) rake db:migrate RAILS_ENV=development
     If error try this : You need just comment all devise lines temporally (in routes.rb / user.rb) to not get raise. and run rails generate devise:install
 
