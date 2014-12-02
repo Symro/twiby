@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20141202205544_add_default_value_for_avatar_users.rb
