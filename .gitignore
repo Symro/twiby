@@ -17,3 +17,5 @@
 
 # Ignore Rubymine files
 .idea/
+
+.DS_Store
