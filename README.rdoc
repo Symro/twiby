@@ -10,6 +10,7 @@ Twiby project
 Things to know:
 
 - Gem devise documentation : https://github.com/plataformatec/devise
+- To push in specific branch : git push origin branchName
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
