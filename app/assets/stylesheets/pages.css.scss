@@ -81,6 +81,29 @@ body {
 			cursor: pointer;
 		}
 	}
+	.form-inputs{
+		.user_remember_me{
+			#user_remember_me{
+				display: inline;
+				width: 25px;
+			}
+
+			
+		}
+	}
+	.form-actions{
+		.btn{
+			padding:10px;
+			border-radius:0;
+			text-transform:uppercase;
+			background-color: white;
+			border:none;
+			&:hover{
+				cursor: pointer;
+			}
+		}
+	}
+
 	hr{
 		width: 15%;
 		color: grey;
