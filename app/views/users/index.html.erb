@@ -17,6 +17,10 @@
     <% end %>
 </ul>
 
+<!-- error display from form tweet -->
+<% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+<% end -%>
 <!-- form to tweet -->
 <%= simple_form_for @new_tweet, :url => "/tweets/new", :method => :post do |f| %>
     <%= f.text_area :content %>

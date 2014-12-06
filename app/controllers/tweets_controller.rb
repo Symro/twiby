@@ -5,12 +5,14 @@ class TweetsController < ApplicationController
 
   def new
 
-    @tweet = Tweet.create!({:user_id => current_user.id, :content => params[:tweet][:content]})
+    # Create the new tweet
+    @tweet = Tweet.new(user_id: current_user.id, content: params[:tweet][:content])
 
+    # redirections
     if @tweet.save
-      render html: 'ok'
+      redirect_to users_index_path
     else
-      render html: 'not ok'
+      redirect_to users_index_path, flash: { error: 'error' }
     end
 
   end
