@@ -1,0 +1,132 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* Don't kill focus outline for keyboard users: http://24ways.org/2009/dont-lose-your-focus */
+a:hover, a:active {
+    outline: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body {
+	background-color: grey;
+	width: 100%;
+
+}
+
+.mgb_30{
+	margin-bottom:20px;
+}
+.mgb_50{
+	margin-bottom:50px;
+}
+.container{
+	width: 90%;
+	margin: 0 auto;
+	padding-top:50px;	
+	input,button{
+		width: 100%;
+		padding:10px;
+		display: block;
+		margin-bottom: 20px;
+		box-sizing: border-box;
+	}
+	button{
+		text-transform:uppercase;
+		&:hover{
+			cursor: pointer;
+		}
+	}
+	.form-inputs{
+		.user_remember_me{
+			#user_remember_me{
+				display: inline;
+				width: 25px;
+			}
+
+			
+		}
+	}
+	.form-actions{
+		.btn{
+			padding:10px;
+			border-radius:0;
+			text-transform:uppercase;
+			background-color: white;
+			border:none;
+			&:hover{
+				cursor: pointer;
+			}
+		}
+	}
+
+	hr{
+		width: 15%;
+		color: grey;
+
+	}
+	h1, h2 {
+		text-align: center;
+		text-transform: uppercase;
+
+	}
+
+	a{
+		display: inherit;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	.separator{
+		display: inline-block;
+		margin: 0 auto;
+		width: 30px;
+		height: 5px;
+		color: #000;
+	}
+}
+
+

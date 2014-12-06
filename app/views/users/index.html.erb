@@ -1,0 +1,28 @@
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
+
+<!-- logout link -->
+<% if user_signed_in? %>
+    <li>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+    </li>
+<% end %>
+
+<!-- tweet feed of the user -->
+<ul>
+    <% @tweet_list.each do |tweet| %>
+      <li>
+        <%= tweet.content %>
+      </li>
+    <% end %>
+</ul>
+
+<!-- error display from form tweet -->
+<% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+<% end -%>
+<!-- form to tweet -->
+<%= simple_form_for @new_tweet, :url => "/tweets/new", :method => :post do |f| %>
+    <%= f.text_area :content %>
+    <%= f.button :submit %>
+<% end %>
