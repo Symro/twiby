@@ -8,6 +8,8 @@
 $grey: #f6f4f4;
 $grey_font: #dfdfdf;
 $green:#23ee83;
+$yellow:#fcfa26;
+$red:#ee5043;
 
 
 @mixin transition($transition) {
@@ -68,20 +70,20 @@ table {
 
 
 body {
-	background-color: $grey;
+	background-color: #60d4d4;
 	width: 100%;
 }
 
 hr{
-	width: 15%;
-	border:1px solid $grey;
+	width: 15px;
+	border:1px solid #90e1e1;
 
 }
 
 .mgb_15{
 	margin-bottom:15px;
 }
-.mgb_30{
+.mgb_20{
 	margin-bottom:20px;
 }
 .mgb_50{
@@ -89,39 +91,20 @@ hr{
 }
 
 header{
-	background-color: #60d4d4;
 	padding: 30px;
 	color:#fff;
-	margin-bottom:50px;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+	margin-bottom:30px;
+	// box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 	h1, h2 {
 		text-align: center;
 		text-transform: uppercase;
 
 	}
 }
-.sign_in{
-	a{
-		text-align:center;
-		color:#afafaf;
-		text-decoration: none;
-	}
-}
-.container{
-	width: 90%;
-	margin: 0 auto;	
-	input,button{
-		width: 100%;
-		padding:10px;
-		display: block;
-		margin-bottom: 20px;
-		box-sizing: border-box;
-	}
-	button{
-		text-transform:uppercase;
-		&:hover{
-			cursor: pointer;
-		}
+.connect{
+	height:100%;
+	.title{
+		color:$yellow;
 	}
 	.form-inputs{
 		label{
@@ -136,24 +119,51 @@ header{
 	}
 	.form-actions{
 		.btn{
-			padding:10px;
+			padding:15px;
 			border-radius:0;
 			text-transform:uppercase;
-			background-color: $green;
+			background-color: $yellow;
 			border:none;
-			border-bottom:3px solid #21dc79;
-			color: #fff;
+			border-bottom:4px solid #dcda2b;
+			color: $red;
 			@include transition(all .5s);
 			
 			&:hover{
 				cursor: pointer;
-				background-color: darken($green, 10%);
-				border-bottom:3px solid darken(#21dc79, 10%);
+				background-color: darken($yellow, 10%);
+				border-bottom:4px solid darken(#dcda2b, 10%);
 				box-shadow: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 				@include transition(all .5s);
 			}
 		}
 	}
+}
+
+.sign_in{
+	a{
+		text-align:center;
+		color:#afafaf;
+		text-decoration: none;
+	}
+}
+.container{
+	width: 90%;
+	margin: 0 auto;	
+	input,button{
+		border:none;
+		width: 100%;
+		padding:15px;
+		display: block;
+		margin-bottom: 20px;
+		box-sizing: border-box;
+	}
+	button{
+		text-transform:uppercase;
+		&:hover{
+			cursor: pointer;
+		}
+	}
+
 	a{
 		display: inherit;
 		text-transform: uppercase;
@@ -202,9 +212,9 @@ header{
 	}
 }
 .yell_index{
-	.container{
-		margin-top: -90px;
-	}
+	background-color: $grey;
+	padding:30px;
+
 }
 
 
