@@ -3,6 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
+
+$grey: #f6f4f4;
+$grey_font: #dfdfdf;
+$green:#23ee83;
+
+
+@mixin transition($transition) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -53,21 +68,48 @@ table {
 
 
 body {
-	background-color: grey;
+	background-color: $grey;
 	width: 100%;
+}
+
+hr{
+	width: 15%;
+	border:1px solid $grey;
 
 }
 
+.mgb_15{
+	margin-bottom:15px;
+}
 .mgb_30{
 	margin-bottom:20px;
 }
 .mgb_50{
 	margin-bottom:50px;
 }
+
+header{
+	background-color: #60d4d4;
+	padding: 30px;
+	color:#fff;
+	margin-bottom:50px;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+	h1, h2 {
+		text-align: center;
+		text-transform: uppercase;
+
+	}
+}
+.sign_in{
+	a{
+		text-align:center;
+		color:#afafaf;
+		text-decoration: none;
+	}
+}
 .container{
 	width: 90%;
-	margin: 0 auto;
-	padding-top:50px;	
+	margin: 0 auto;	
 	input,button{
 		width: 100%;
 		padding:10px;
@@ -82,13 +124,14 @@ body {
 		}
 	}
 	.form-inputs{
+		label{
+			display: none;
+		}
 		.user_remember_me{
 			#user_remember_me{
 				display: inline;
 				width: 25px;
-			}
-
-			
+			}			
 		}
 	}
 	.form-actions{
@@ -96,36 +139,71 @@ body {
 			padding:10px;
 			border-radius:0;
 			text-transform:uppercase;
-			background-color: white;
+			background-color: $green;
 			border:none;
+			border-bottom:3px solid #21dc79;
+			color: #fff;
+			@include transition(all .5s);
+			
 			&:hover{
 				cursor: pointer;
+				background-color: darken($green, 10%);
+				border-bottom:3px solid darken(#21dc79, 10%);
+				box-shadow: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+				@include transition(all .5s);
 			}
 		}
 	}
-
-	hr{
-		width: 15%;
-		color: grey;
-
-	}
-	h1, h2 {
-		text-align: center;
-		text-transform: uppercase;
-
-	}
-
 	a{
 		display: inherit;
-		text-align: center;
 		text-transform: uppercase;
 	}
-	.separator{
-		display: inline-block;
-		margin: 0 auto;
-		width: 30px;
-		height: 5px;
-		color: #000;
+	.yell_form{
+		padding:30px;
+		background-color: #FFF;
+
+		textarea{
+			width: 100%;
+			height: 100px;
+			font-size: 14px;
+			margin-bottom: 15px;
+			padding:10px;
+			box-sizing: border-box;
+			background-color: #f6f4f4;
+			color: #c5c4c4;
+			border:none;
+			resize: none;
+		}
+		.btn{
+			width: 110px;
+			margin:0;
+			background-color: #23ee83;
+			color: #fff;
+			border:none;
+			border-bottom:3px solid #21dc79;
+			text-transform: uppercase;
+		}
+		.nb_caract{
+			margin-bottom: 15px;
+			text-align:right;
+			color: $grey_font;
+		}
+	}
+	.yell_list{
+		background-color: #FFF;
+		padding:30px;
+		ul{
+			padding:30px;
+		}
+		li{
+			margin-bottom:30px; 
+			border-bottom:1px solid $grey_font;
+		}
+	}
+}
+.yell_index{
+	.container{
+		margin-top: -90px;
 	}
 }
 
