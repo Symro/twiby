@@ -9,6 +9,10 @@ class UsersController < ApplicationController
 
   def show
 
+    # Show user basics informations and tweets
+    @user       = User.find(params[:id])
+    @user_tweet = Tweet.where(user_id: params[:id])
+
   end
 
 end
