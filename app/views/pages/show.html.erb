@@ -1,0 +1,27 @@
+<h2>User profile</h2>
+<br>
+<p>Username :</p>
+<%# current_user.username %>
+<%= @user.username %>
+<br><br>
+
+<p>Profil description :</p>
+<%# current_user.description %>
+<%= @user.description %>
+<br><br>
+
+<p>Tweets :</p>
+
+<% if @user_tweet.any?  %>
+  <% @user_tweet.each do |tweet| %>
+    
+    <br>
+    <%= tweet.content %> published on <%= tweet.created_at.strftime('%m/%d/%Y') %>
+    <br>
+    ----
+
+  <% end %>
+<% else %>
+  Never Tweeted :(
+<% end %>
+
