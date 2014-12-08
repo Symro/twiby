@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   get 'users/index'
   get '/' => "users#index"
+  
+  get '/profile' => "pages#index"
   get '/profile/:id' => "pages#show"
+
 
   devise_for :users, controllers: {
        sessions: 'users/sessions'
