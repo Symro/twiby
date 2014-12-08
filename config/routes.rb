@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   post 'tweets/new'
 
   get 'users/index'
-
   get '/' => "users#index"
+  get '/users/:id' => "users#show"
 
   devise_for :users, controllers: {
        sessions: 'users/sessions'

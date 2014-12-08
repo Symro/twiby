@@ -1,13 +1,12 @@
 <header>
 
     <div class="container">
-        <p>Profil</p>
-        <!-- logout link -->
+        <p>Feed</p>
         <% if user_signed_in? %>
-            <li>
-                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-            </li>
-        <% end %>
+            <!-- logout link -->
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+            <%= link_to "Profile", controller: "users", action: "show", id: current_user.id %>
+      <% end %>
 
     </div>
 
