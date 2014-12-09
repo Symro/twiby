@@ -3,13 +3,15 @@ class FollowsController < ApplicationController
   # add a new follower
   def create
 
-    @follow = Follow.new(follower_id: current_user.id, followed_id: params[:follow][:followed_id])
+    followed_id = params[:follow][:followed_id]
 
-    if Follow.where(:follower_id => current_user.id, :followed_id => params[:follow][:followed_id]).present?
-      redirect_to users_index_path, flash: {error:'Already followed'}
+    @follow = Follow.new(follower_id: current_user.id, followed_id: followed_id)
+
+    if Follow.where(:follower_id => current_user.id, :followed_id => followed_id).present?
+      redirect_to profile_id_path(:id => followed_id), flash: {error:'Already followed'}
     else
       @follow.save
-      redirect_to users_index_path, flash: {error:'Tu peux !'}
+      redirect_to profile_id_path(:id => followed_id), flash: {error:"You're now following this user :)"}
     end
 
   end
@@ -17,9 +19,9 @@ class FollowsController < ApplicationController
   # remove a follower
   def destroy
 
-    
 
-    
+
+
   end
 
 

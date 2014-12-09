@@ -28,6 +28,10 @@
 
 <p>BOUTON : </p>
 
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+
 <%= simple_form_for @follow do |f| %>
   <%= f.error_notification %>
 
