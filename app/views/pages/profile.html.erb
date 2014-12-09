@@ -12,6 +12,7 @@
 
 <p>Tweets :</p>
 
+<!-- User tweets -->
 <% if @user_tweet.any?  %>
   <% @user_tweet.each do |tweet| %>
     
@@ -34,22 +35,27 @@
 <% end -%>
 
 <!-- Formulaire de follow / unfollow -->
-<%= simple_form_for @follow do |f| %>
+<% if @following === true %>
 
-  <%= f.error_notification %>
+    <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
 
-  <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+      <%= f.error_notification %>
 
-  <%= f.button :submit, "Follow" %>
+      <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
 
-<% end %>
+      <%= f.button :submit, "Unfollow" %>
+    <% end %>
 
-<%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
+<% else %>
 
-  <%= f.error_notification %>
+    <%= simple_form_for @follow do |f| %>
 
-  <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+        <%= f.error_notification %>
 
-  <%= f.button :submit, "Unfollow" %>
+        <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+
+        <%= f.button :submit, "Follow" %>
+
+    <% end %>
 
 <% end %>
