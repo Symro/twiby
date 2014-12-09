@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-
-
-  get 'tweets/index'
-  post 'tweets/new'
+  # CRUD for tweets
+  resources :tweets
 
   get 'users/index'
   get '/' => "users#index"
@@ -14,6 +12,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
        sessions: 'users/sessions'
-   }
+  }
 
 end

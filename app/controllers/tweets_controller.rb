@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   def index
   end
 
-  def new
+  def create
 
     # Create the new tweet
     @tweet = Tweet.new(user_id: current_user.id, content: params[:tweet][:content])

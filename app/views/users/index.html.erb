@@ -29,7 +29,7 @@
 
         <!-- form to tweet -->
         <div class="yell_form mgb_30">
-            <%= simple_form_for @new_tweet, :url => "/tweets/new", :method => :post do |f| %>
+            <%= simple_form_for @new_tweet, :url => "/tweets", :method => :post do |f| %>
                 <%= f.text_area :content, placeholder: 'Write something' %>
                 <p class="nb_caract">140</p>
                 <%= f.button :submit %>
