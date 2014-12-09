@@ -6,7 +6,7 @@
 
 
 $grey: #f6f4f4;
-$grey_font: #dfdfdf;
+$grey_font: #8c8c8c;
 $green:#23ee83;
 $yellow:#fcfa26;
 $red:#ee5043;
@@ -335,8 +335,9 @@ header{
 		li{
 			display: flex;
 			display: -webkit-flex;
-			margin-bottom:30px; 
-			border-bottom:1px solid $grey_font;
+			margin-bottom:30px;
+			padding-bottom: 30px; 
+			border-bottom:1px solid $grey;
 			.user_picture{
 				width: 70px;
 				.user_picts{
@@ -354,21 +355,42 @@ header{
 			.user_content{
 				width:50px;
 				flex:1;
-				word-wrap: break-word;
-				.user_name{
-					color: $green;
-					margin-bottom:15px; 
+				word-wrap: break-word;					
+				p{
+					display: inline;
+					color:$grey_font;
 				}
-				.user_actions{
-					margin-top: 15px;
-					a{
-						text-decoration: none;
-						color:$grey_font;
+				.head_yell{
+					margin-bottom: 15px;
+					.user_name{
+						display: inline;
+						color: $green;
+						text-transform: capitalize;
+					}
+					.yell_time{
+						float:right;
+					}
+				}
+				.user_yell{
+					color: $grey_font;
+					line-height: 21px;
+					.user_actions{
+						margin-top: 15px;
+						a{
+							display: inline;
+							text-decoration: none;
+							color:$grey_font;
+							font-size: 18px;
+							&:last-child{
+								float:right;
+							}
+						}
+						i:hover{
+							cursor: pointer;
+						}
 					}
 				}
 			}
-
-
 		}
 	}
 }

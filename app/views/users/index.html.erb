@@ -5,8 +5,6 @@
             <div class="logo mgb_20"></div>
         </div>
         <div class="right_part">
-            
-            <p>Feed</p>
             <% if user_signed_in? %>
                 <!-- logout link -->
                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
@@ -46,14 +44,20 @@
                   
 
                     <div class="user_content">
-                        <div class="user_name">
-                            <%= tweet.user.username %>
+                        <div class="head_yell">
+                            <div class="user_name">
+                                <%= tweet.user.username %>
+                            </div>
+                            <p class="yell_time">4sec</p>
                         </div>
+
+
 
                         <div class="user_yell">
                             <%= tweet.content %>
                             <div class="user_actions">
                                 <a href="#"><i class="icon-star"></i></a>
+                                <p>12</p>
                                 <a href="#"><i class="icon-trash"></i></a>
 
                             </div>
