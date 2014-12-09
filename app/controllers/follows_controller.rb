@@ -21,7 +21,7 @@ class FollowsController < ApplicationController
 
     followed_id = params[:follow][:followed_id]
 
-    @unfollow = Follow.where(followed_id: current_user.id, followed_id: params[:follow][:followed_id])
+    @unfollow = Follow.where(follower_id: current_user.id, followed_id: followed_id)
 
     if @unfollow.present?
       @unfollow.destroy(@unfollow)
