@@ -34,32 +34,31 @@
                 <p class="nb_caract">140</p>
                 <%= f.button :submit %>
             <% end %>
-            <div class="clear"></div>
-
         </div>
 
         <!-- tweet feed of the user -->
         <ul class="yell_list clear">
             <% @tweet_list.each do |tweet| %>
                 <li>
+                    <div class="user_picture">
+                          <div class="user_picts"></div>
+                    </div>
+                  
 
-                    <div class="user_picture left_part"></div>
-
-                    <div class="left_part">
+                    <div class="user_content">
                         <div class="user_name">
                             <%= tweet.user.username %>
                         </div>
 
-                        <div class="">
+                        <div class="user_yell">
                             <%= tweet.content %>
-                            <div class="">
-                                <a href="" class="favorite">favorite</a>
-                                <a href="" class="garbage">garbage</a>
+                            <div class="user_actions">
+                                <a href="#"><i class="icon-star"></i></a>
+                                <a href="#"><i class="icon-trash"></i></a>
 
                             </div>
                         </div>
                     </div>
-                    <div class="clear"></div>
                 </li>
             <% end %>
         </ul>
