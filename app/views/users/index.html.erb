@@ -10,7 +10,7 @@
             <% if user_signed_in? %>
                 <!-- logout link -->
                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-                <%= link_to "Profile", controller: "pages", action: "show", id: current_user.id %>
+                <%= link_to "Profile", controller: "pages", action: "profile", id: current_user.id %>
             <% end %>
         </div>
     </div>
@@ -47,7 +47,7 @@
 
                     <div class="user_content">
                         <div class="user_name">
-                            <%= tweet.user.username %>
+                            <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
                         </div>
 
                         <div class="user_yell">

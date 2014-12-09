@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/' => "users#index"
   
   get '/profile' => "pages#index"
-  get '/profile/:id' => "pages#show"
+  get '/profile/:id' => "pages#profile"
 
 
   devise_for :users, controllers: {

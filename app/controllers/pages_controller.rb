@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     @new_tweet = Tweet.new
   end
 
-  def show
+  def profile
 
     # Show user basics informations and tweets
     @user       = User.find(params[:id])
