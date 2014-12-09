@@ -7,8 +7,13 @@
         <div class="right_part">
             <% if user_signed_in? %>
                 <!-- logout link -->
-                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-                <%= link_to "Profile", controller: "pages", action: "profile", id: current_user.id %>
+<!--                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
+
+                <div class="profile_button">
+                    <i class="icon-perso"></i>
+                    <%= link_to "Profile", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
+                </div>
+
             <% end %>
         </div>
     </div>
@@ -49,6 +54,7 @@
                                 <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
                             </div>
                             <p class="yell_time">4sec</p>
+                        </div>
                         <div class="user_yell">
                             <%= tweet.content %>
                             <div class="user_actions">

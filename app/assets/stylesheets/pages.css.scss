@@ -7,7 +7,9 @@
 
 $grey: #f6f4f4;
 $grey_font: #8c8c8c;
+$grey_element_yell: #dfdfdf;
 $green:#23ee83;
+$green_dark:#54b4b4;
 $yellow:#fcfa26;
 $red:#ee5043;
 
@@ -286,6 +288,24 @@ header{
 		display: inherit;
 		text-transform: uppercase;
 	}
+
+	.profile_button{
+		display: flex;
+		padding:15px;
+		background-color: $green_dark;
+		&:hover{
+			background-color: darken($green_dark, 10%);
+			cursor: pointer;
+		}
+		a{
+			color: #fff;
+			text-decoration: none;
+		}
+		i{
+			flex: 1;
+			margin-right: 10px;
+		}
+	}
 	.yell_form{
 		padding:20px;
 		background-color: #FFF;
@@ -323,7 +343,7 @@ header{
 		.nb_caract{
 			margin-bottom: 15px;
 			text-align:right;
-			color: $grey_font;
+			color: $grey_element_yell;
 		}
 	}
 	.yell_list{
@@ -358,14 +378,23 @@ header{
 				word-wrap: break-word;					
 				p{
 					display: inline;
-					color:$grey_font;
+					color:$grey_element_yell;
 				}
 				.head_yell{
 					margin-bottom: 15px;
+					overflow: hidden;
 					.user_name{
-						display: inline;
-						color: $green;
-						text-transform: capitalize;
+						float:left;
+						a{
+							display: inline;
+							color: $green;
+							text-transform: capitalize;
+							text-decoration: none;
+							:hover{
+								cursor: pointer;
+							}
+						}
+						
 					}
 					.yell_time{
 						float:right;
@@ -379,7 +408,7 @@ header{
 						a{
 							display: inline;
 							text-decoration: none;
-							color:$grey_font;
+							color:$grey_element_yell;
 							font-size: 18px;
 							&:last-child{
 								float:right;
@@ -393,11 +422,65 @@ header{
 			}
 		}
 	}
+
+	.profile_user{
+		display: flex;
+		i{
+			border: 1px solid #fff;
+			border-radius:50px;
+			padding:10px;
+			margin-top: 10px;
+		}
+		.user_logout, .user_edit_profile{
+			flex:1;
+			margin-top: 45px;
+			text-align: center;
+		}
+		.user_picture{
+			flex:auto;
+			.picture{
+				background-image:url(/solion.jpg);
+				border-radius:50px;
+				border:5px solid #90e1e1;
+				background-size: 100%;
+				height: 90px;
+				width: 90px;
+				margin: 0 auto;
+			}
+		}
+		.user_name{
+			margin: 0 auto;
+			text-align: center;
+			color:#fff;
+
+
+		}
+	}
 }
 .yell_index{
 	background-color: $grey;
 	padding:20px;
 
 }
+.users_twib{
+	text-align:center;
+	color:$grey_font;
+	text-transform:uppercase;
+	margin-bottom:15px;
+	.users_nb_twib{
+		color: $grey_element_yell;
+	}
 
+}
+
+
+
+@media (min-width: 700px) {
+	.container{
+		width: 700px;
+	}
+
+
+
+}
 

@@ -1,27 +1,99 @@
+
+<header>
+
+    <div class="container">
+        <div class="left_part">
+            <div class="logo mgb_20"></div>
+        </div>
+        <div class="right_part">
+            <% if user_signed_in? %>
+                <!-- logout link -->
+<!--                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
+
+                <div class="profile_button">
+                    <i class="icon-perso"></i>
+                    <%= link_to "Profile", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
+                </div>
+
+            <% end %>
+        </div>
+
+
+        <div class="profile_user clear ">
+
+<!--           <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
+          	<div class="user_logout">
+          		<i class="icon-off"></i>
+          	</div>
+        	<div class="user_picture">
+        		<div class="picture"></div>
+        	</div>
+        	<div class="user_edit_profile">
+        		<i class="icon-edit"></i>
+        	</div>
+        </div>
+        <div class="user_name clear">
+        	<%= @user.username %>
+        </div>
+        <div class="user_description clear">
+	        <%= @user.description %>
+	        <p>kjonfo enj enijd nn juznf zunz nz nfzjn fijzn jndsibv dshvb sdhbv dbv djnv dkjsn jezn enze ufne zfnezfjne fnzvnzvzjn</p>
+	    </div>
+    </div>
+
+</header>
+
+
+
 <h2>User profile</h2>
 <br>
 <p>Username :</p>
 <%# current_user.username %>
-<%= @user.username %>
+
 <br><br>
 
 <p>Profil description :</p>
 <%# current_user.description %>
-<%= @user.description %>
+
 <br><br>
 
 <p>Tweets :</p>
 
-<% if @user_tweet.any?  %>
-  <% @user_tweet.each do |tweet| %>
-    
-    <br>
-    <%= tweet.content %> published on <%= tweet.created_at.strftime('%m/%d/%Y') %>
-    <br>
-    ----
+<div class="yell_index clear">
+    <div class="container">
+    	<p class="users_twib">My Twibs <span class="users_nb_twib">- 3 465</span></p>
+    	<ul class="yell_list clear">	
+			<% if @user_tweet.any?  %>
+	  			<% @user_tweet.each do |tweet| %>
+	   			<li>
+	   				<div class="user_picture">
+	   				      <div class="user_picts"></div>
+	   				</div>
 
-  <% end %>
-<% else %>
-  Never Tweeted :(
-<% end %>
+	   				<div class="user_content">
+	   				    <div class="head_yell">
+	   				        <div class="user_name">
+	   				            <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
+	   				        </div>
+	   				        <p class="yell_time">
+	   				        	published on <%= tweet.created_at.strftime('%m/%d/%Y') %>
+	   				        </p>
+	   				    </div>
+	   				    <div class="user_yell">
+	   				        <%= tweet.content %>
+	   				        <div class="user_actions">
+	   				            <a href="#"><i class="icon-star"></i></a>
+	   				            <p>12</p>
+	   				            <a href="#"><i class="icon-trash"></i></a>
 
+	   				        </div>
+	   				    </div>
+
+	  			<% end %>
+			<% else %>
+	  			Never Tweeted :(
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
