@@ -19,8 +19,16 @@ class FollowsController < ApplicationController
   # remove a follower
   def destroy
 
+    followed_id = params[:follow][:followed_id]
 
+    @unfollow = Follow.where(followed_id: current_user.id, followed_id: params[:follow][:followed_id])
 
+    if @unfollow.present?
+      @unfollow.destroy(@unfollow)
+      redirect_to profile_id_path(:id => followed_id), flash: {error:"You're now unfollowing this user :("}
+    else
+      redirect_to profile_id_path(:id => followed_id), flash: {error:'Already unfollowed'}
+    end
 
   end
 

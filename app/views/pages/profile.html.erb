@@ -28,15 +28,28 @@
 
 <p>BOUTON : </p>
 
+<!-- Affichage des flash messages -->
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, msg, class: name %>
 <% end -%>
 
+<!-- Formulaire de follow / unfollow -->
 <%= simple_form_for @follow do |f| %>
+
   <%= f.error_notification %>
 
   <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
 
   <%= f.button :submit, "Follow" %>
+
+<% end %>
+
+<%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
+
+  <%= f.error_notification %>
+
+  <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+
+  <%= f.button :submit, "Unfollow" %>
 
 <% end %>
