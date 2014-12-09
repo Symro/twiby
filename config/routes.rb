@@ -1,19 +1,17 @@
 Rails.application.routes.draw do
 
-
-
-  get 'tweets/index'
-  post 'tweets/new'
+  # CRUD for tweets
+  resources :tweets
 
   get 'users/index'
   get '/' => "users#index"
   
   get '/profile' => "pages#index"
-  get '/profile/:id' => "pages#show"
+  get '/profile/:id' => "pages#profile"
 
 
   devise_for :users, controllers: {
        sessions: 'users/sessions'
-   }
+  }
 
 end
