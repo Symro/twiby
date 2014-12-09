@@ -1,7 +1,6 @@
 <header>
 
     <div class="container">
-
         <div class="left_part">
             <div class="logo mgb_20"></div>
         </div>
@@ -9,16 +8,11 @@
             
             <p>Feed</p>
             <% if user_signed_in? %>
-              <!-- logout link -->
-              <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-              <%= link_to "Profile", class: "btn btn-default",controller: "users", action: "show", id: current_user.id %>
+                <!-- logout link -->
+                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                <%= link_to "Profile", controller: "pages", action: "show", id: current_user.id %>
             <% end %>
         </div>
-
-
-        
-
-
     </div>
 
 </header>
