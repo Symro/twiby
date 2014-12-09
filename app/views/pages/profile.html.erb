@@ -44,6 +44,8 @@
 </header>
 
 
+<%= link_to "Feed", users_index_path %>
+
 
 <h2>User profile</h2>
 <br>
@@ -85,10 +87,8 @@
 	   				            <a href="#"><i class="icon-star"></i></a>
 	   				            <p>12</p>
 	   				            <a href="#"><i class="icon-trash"></i></a>
-
 	   				        </div>
 	   				    </div>
-
 	  			<% end %>
 			<% else %>
 	  			Never Tweeted :(
@@ -97,3 +97,38 @@
 		</ul>
 	</div>
 </div>
+
+
+<p>BOUTON : </p>
+
+<!-- Affichage des flash messages -->
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+
+<!-- Formulaire de follow / unfollow -->
+<% if @following === true %>
+
+    <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
+
+      <%= f.error_notification %>
+
+      <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+
+      <%= f.button :submit, "Unfollow" %>
+    <% end %>
+
+<% else %>
+
+    <%= simple_form_for @follow do |f| %>
+
+        <%= f.error_notification %>
+
+        <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+
+        <%= f.button :submit, "Follow" %>
+
+    <% end %>
+
+<% end %>
+
