@@ -25,3 +25,14 @@
   Never Tweeted :(
 <% end %>
 
+
+<p>BOUTON : </p>
+
+<%= simple_form_for @follow do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+
+  <%= f.button :submit, "Follow" %>
+
+<% end %>

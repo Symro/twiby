@@ -13,6 +13,8 @@ class PagesController < ApplicationController
     @user       = User.find(params[:id])
     @user_tweet = Tweet.order('created_at DESC').where(user_id: params[:id])
 
+    @follow     = Follow.new
+
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "This profile doesn't exist"
       redirect_to :action => 'index'

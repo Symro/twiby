@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # CRUD for tweets
   resources :tweets
 
+  # CRUD for follows
+  resources :follows
+
   get 'users/index'
   get '/' => "users#index"
   
