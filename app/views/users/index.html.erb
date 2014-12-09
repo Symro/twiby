@@ -1,19 +1,30 @@
 <header>
 
     <div class="container">
-        <p>Feed</p>
-        <% if user_signed_in? %>
-            <!-- logout link -->
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-            <%= link_to "Profile", controller: "users", action: "show", id: current_user.id %>
-      <% end %>
+
+        <div class="left_part">
+            <div class="logo mgb_20"></div>
+        </div>
+        <div class="right_part">
+            
+            <p>Feed</p>
+            <% if user_signed_in? %>
+              <!-- logout link -->
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+              <%= link_to "Profile", class: "btn btn-default",controller: "users", action: "show", id: current_user.id %>
+            <% end %>
+        </div>
+
+
+        
+
 
     </div>
 
 </header>
 
 
-<div class="yell_index">
+<div class="yell_index clear">
 
     <div class="container">
 
@@ -29,18 +40,32 @@
                 <p class="nb_caract">140</p>
                 <%= f.button :submit %>
             <% end %>
+            <div class="clear"></div>
 
         </div>
 
         <!-- tweet feed of the user -->
-        <ul class="yell_list">
+        <ul class="yell_list clear">
             <% @tweet_list.each do |tweet| %>
                 <li>
-                    <%= tweet.user.username %>
-                    <br>
-                    <%= tweet.content %>
-                    <a href="" class="favorite">favorite</a>
-                    <a href="" class="garbage">garbage</a>
+
+                    <div class="user_picture left_part"></div>
+
+                    <div class="left_part">
+                        <div class="user_name">
+                            <%= tweet.user.username %>
+                        </div>
+
+                        <div class="">
+                            <%= tweet.content %>
+                            <div class="">
+                                <a href="" class="favorite">favorite</a>
+                                <a href="" class="garbage">garbage</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
                 </li>
             <% end %>
         </ul>

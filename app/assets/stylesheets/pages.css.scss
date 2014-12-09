@@ -19,6 +19,48 @@ $red:#ee5043;
     transition:         $transition;
 }
 
+@mixin din { 
+  font-family: “DINRegular”, Verdana, Arial, sans-serif;
+}
+
+
+@font-face {
+    font-family: 'dinregular';
+    src: url('../fonts/dinregularalternate-webfont.eot');
+    src: url('../fonts/dinregularalternate-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/dinregularalternate-webfont.woff') format('woff'),
+         url('../fonts/dinregularalternate-webfont.ttf') format('truetype'),
+         url('../fonts/dinregularalternate-webfont.svg#dinregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'dinlight';
+    src: url('../fonts/dinlight-webfont.eot');
+    src: url('../fonts/dinlight-webfont.eot?#iefix') format('embedded-opentype'),
+        
+         url('../fonts/dinlight-webfont.woff') format('woff'),
+         url('../fonts/dinlight-webfont.ttf') format('truetype'),
+         url('../fonts/dinlight-webfont.svg#dinlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'dinmedium';
+    src: url('../fonts/dinmedium-webfont.eot');
+    src: url('../fonts/dinmedium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/dinmedium-webfont.woff') format('woff'),
+         url('../fonts/dinmedium-webfont.ttf') format('truetype'),
+         url('../fonts/dinmedium-webfont.svg#dinmedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -45,6 +87,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: 'dinregular';
 }
 ol, ul {
 	list-style: none;
@@ -90,21 +133,55 @@ hr{
 	margin-bottom:50px;
 }
 
+.left_part{
+	float: left;
+	.logo{
+		width: 50px;
+		height: 50px;
+	}
+
+}
+.right_part{
+	float: right;
+	
+}
+
+.clear {
+  clear: both;
+  }
+
 header{
 	padding: 30px;
 	color:#fff;
-	margin-bottom:30px;
 	// box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 	h1, h2 {
 		text-align: center;
 		text-transform: uppercase;
-
+		font-family: 'dinmedium';
 	}
+	h2{
+		font-size: 18px;
+		font-family: 'dinlight';
+		line-height: 25px;
+	}
+}
+
+.logo{
+	background-image:url(/solion.jpg);
+	background-size: 100%;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	width: 100px;
+	height:100px;
+	border-radius: 50px;
 }
 .connect{
 	height:100%;
 	.title{
 		color:$yellow;
+		font-size: 38px;
+		letter-spacing: 2px;
+
 	}
 	.form-inputs{
 		label{
@@ -121,7 +198,9 @@ header{
 		.btn{
 			padding:15px;
 			border-radius:0;
+			font-family: 'dinmedium';
 			text-transform:uppercase;
+			font-size: 16px;
 			background-color: $yellow;
 			border:none;
 			border-bottom:4px solid #dcda2b;
@@ -163,6 +242,11 @@ header{
 			cursor: pointer;
 		}
 	}
+	input{
+		font-family: 'dinmedium';
+		font-size: 14px;
+	}
+
 
 	a{
 		display: inherit;
@@ -171,6 +255,7 @@ header{
 	.yell_form{
 		padding:30px;
 		background-color: #FFF;
+		margin-bottom: 30px;
 
 		textarea{
 			width: 100%;
@@ -185,6 +270,7 @@ header{
 			resize: none;
 		}
 		.btn{
+			float: right;
 			width: 110px;
 			margin:0;
 			background-color: #23ee83;
@@ -192,6 +278,12 @@ header{
 			border:none;
 			border-bottom:3px solid #21dc79;
 			text-transform: uppercase;
+			&:hover{
+				background-color: darken($green, 10%);
+				border-bottom: 3px solid darken(#21dc79,10%);
+				cursor: pointer;
+			}
+
 		}
 		.nb_caract{
 			margin-bottom: 15px;
@@ -208,6 +300,21 @@ header{
 		li{
 			margin-bottom:30px; 
 			border-bottom:1px solid $grey_font;
+			.user_picture{
+
+				background-image:url(/solion.jpg);
+				border-radius:50px;
+				background-size: 100%;
+				width: 50px;
+				height: 50px;
+				margin-right: 20px;
+				margin-top: -10px;
+
+			}
+			.user_name{
+				color: $green;
+				margin-bottom:15px; 
+			}
 		}
 	}
 }
