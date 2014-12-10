@@ -10,8 +10,10 @@
         <div class="right_part">
             <% if user_signed_in? %>
                 <div class="profile_button">
-                    <i class="icon-perso"></i>
-                    <%= link_to "MY PROFILE", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
+                    
+                    <%= link_to profile_id_path(current_user.id) do %>
+							<i class="icon-perso"></i>MY PROFILE
+                    <% end %>
                 </div>
 
             <% end %>
