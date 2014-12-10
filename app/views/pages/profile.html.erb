@@ -10,8 +10,10 @@
         <div class="right_part">
             <% if user_signed_in? %>
                 <div class="profile_button">
-                    <i class="icon-perso"></i>
-                    <%= link_to "MY PROFILE", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
+                    
+                    <%= link_to profile_id_path(current_user.id) do %>
+							<i class="icon-perso"></i>MY PROFILE
+                    <% end %>
                 </div>
 
             <% end %>
@@ -48,6 +50,37 @@
             <div class="user_description">
     	        <p><%= @user.description %></p>
     	    </div>
+
+
+			<div class="to_follow">
+				<!-- Formulaire de follow / unfollow -->
+				<% if @following === true %>
+
+				    <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
+
+				      <%= f.error_notification %>
+
+				      <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+
+				      <%= f.button :submit, "Followed", class: 'unfollow' %>
+				    <% end %>
+
+				<% else %>
+
+				    <%= simple_form_for @follow do |f| %>
+
+				        <%= f.error_notification %>
+
+				        <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+
+				        <%= f.button :submit, "Follow", class: 'follow' %>
+
+				    <% end %>
+
+				<% end %>
+			</div>
+
+
 
     	    <div class="follow">
     	    	<div class="following">
@@ -98,7 +131,9 @@
 	  			<% @user_tweet.each do |tweet| %>
 	   			<li>
 	   				<div class="user_picture">
-	   				    <div class="user_picts"><%= image_tag(tweet.user.avatar.url(:small)) %></div>
+	   				    
+	   				    	<%= image_tag(tweet.user.avatar.url(:small)) %>
+
 	   				</div>
 
 	   				<div class="user_content">
@@ -140,32 +175,6 @@
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, msg, class: name %>
 <% end -%>
-
-<!-- Formulaire de follow / unfollow -->
-<% if @following === true %>
-
-    <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
-
-      <%= f.error_notification %>
-
-      <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
-
-      <%= f.button :submit, "Unfollow" %>
-    <% end %>
-
-<% else %>
-
-    <%= simple_form_for @follow do |f| %>
-
-        <%= f.error_notification %>
-
-        <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
-
-        <%= f.button :submit, "Follow" %>
-
-    <% end %>
-
-<% end %>
 
 
 
