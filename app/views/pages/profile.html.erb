@@ -9,9 +9,6 @@
         </div>
         <div class="right_part">
             <% if user_signed_in? %>
-                <!-- logout link -->
-<!--                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
-
                 <div class="profile_button">
                     <i class="icon-perso"></i>
                     <%= link_to "MY PROFILE", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
@@ -26,13 +23,21 @@
 	          	<div class="user_logout">
 
 	          		<!-- <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
-	          		<i class="icon-off"></i>
+                    <% if @user.id == current_user.id %>
+                        <%= link_to destroy_user_session_path, :method => :delete do %>
+    	          		   <i class="icon-off"></i>
+                        <% end %>
+                    <% end %>
 	          	</div>
 	        	<div class="user_picture">
-	        		<div class="picture"><%= image_tag(@user.avatar.url(:medium)) %></div>
+	        			<%= image_tag(@user.avatar.url(:medium)) %>
 	        	</div>
 	        	<div class="user_edit_profile">
-	        		<i class="icon-edit"></i>
+                    <% if @user.id == current_user.id %>
+                        <%= link_to edit_user_registration_path do %>
+    	        	        <i class="icon-edit"></i>
+                        <% end %>
+                    <% end %>
 	        	</div>
 		    </div>
         		
@@ -41,8 +46,7 @@
             </div>
             <hr>
             <div class="user_description">
-    	        <%= @user.description %>
-    	        <p>kjonfo enj enijd nn juznf zunz nz nfzjn fijzn jndsibv dshvb sdhbv dbv djnv dkjsn jezn enze ufne zfnezfjne fnzvnzvzjn</p>
+    	        <p><%= @user.description %></p>
     	    </div>
 
     	    <div class="follow">
@@ -56,8 +60,6 @@
         </div>
     </div>
 </header>
-
-
 
 
 <!-- 
@@ -80,13 +82,23 @@
 
 		<button class="yell_something">Yell something !</button>
 
-    	<p class="users_twib">My Twibs <span class="users_nb_twib">- 3 465</span></p>
+		<!-- form to tweet -->
+		<div class="yell_form mgb_30">
+		    <%= simple_form_for @new_tweet, :url => "/tweets", :method => :post do |f| %>
+		        <%= f.text_area :content, placeholder: 'Write something' %>
+		        <p class="nb_caract">140</p>
+		        <%= f.button :submit %>
+		    <% end %>
+		</div>
+
+
+    	<p class="users_twib"><%= (@user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- 3 465</span></p>
     	<ul class="yell_list clear">	
 			<% if @user_tweet.any?  %>
 	  			<% @user_tweet.each do |tweet| %>
 	   			<li>
 	   				<div class="user_picture">
-	   				    <div class="user_picts"></div>
+	   				    <div class="user_picts"><%= image_tag(tweet.user.avatar.url(:small)) %></div>
 	   				</div>
 
 	   				<div class="user_content">
@@ -95,7 +107,7 @@
 	   				            <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
 	   				        </div>
 	   				        <p class="yell_time">
-	   				        	published on <%= tweet.created_at.strftime('%m/%d/%Y') %>
+	   				        	<%= tweet.created_at.strftime('%m/%d/%Y %H:%M') %>
 	   				        </p>
 	   				    </div>
 	   				    <div class="user_yell">
@@ -157,7 +169,7 @@ LISTE DES FOLLOWERS :
 
     <figure>
       <%= link_to profile_id_path(follower.id), :class => "" do %>
-            <img src="<%= follower.avatar.url(:medium) %>" alt="<%= follower.username %>" />
+            <img src="<%= follower.avatar.url(:small) %>" alt="<%= follower.username %>" />
             <figcaption><%= follower.username %></figcaption>
       <% end %>
     </figure>
@@ -170,7 +182,7 @@ LISTE DES FOLLOWING :
 
     <figure>
       <%= link_to profile_id_path(following.id), :class => "" do %>
-            <img src="<%= following.avatar.url(:medium) %>" alt="<%= following.username %>" />
+            <img src="<%= following.avatar.url(:small) %>" alt="<%= following.username %>" />
             <figcaption><%= following.username %></figcaption>
       <% end %>
     </figure>
