@@ -29,7 +29,7 @@
 	          		<i class="icon-off"></i>
 	          	</div>
 	        	<div class="user_picture">
-	        		<div class="picture"><%= image_tag(@user.avatar.url(:medium)) %></div>
+	        			<%= image_tag(@user.avatar.url(:medium)) %>
 	        	</div>
 	        	<div class="user_edit_profile">
 	        		<i class="icon-edit"></i>
@@ -79,6 +79,15 @@
     <div class="container">
 
 		<button class="yell_something">Yell something !</button>
+
+		<!-- form to tweet -->
+		<div class="yell_form mgb_30">
+		    <%= simple_form_for @new_tweet, :url => "/tweets", :method => :post do |f| %>
+		        <%= f.text_area :content, placeholder: 'Write something' %>
+		        <p class="nb_caract">140</p>
+		        <%= f.button :submit %>
+		    <% end %>
+		</div>
 
     	<p class="users_twib">My Twibs <span class="users_nb_twib">- 3 465</span></p>
     	<ul class="yell_list clear">	

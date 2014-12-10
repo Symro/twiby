@@ -9,6 +9,8 @@ class PagesController < ApplicationController
 
   def profile
 
+    @new_tweet = Tweet.new
+
     # Show user basics informations and tweets
     @user       = User.find(params[:id])
     @user_tweet = Tweet.order('created_at DESC').where(user_id: params[:id])

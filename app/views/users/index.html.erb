@@ -32,6 +32,8 @@
             <%= content_tag :div, msg, class: name %>
         <% end -%>
 
+        <button class="yell_something">Yell something !</button>
+
         <!-- form to tweet -->
         <div class="yell_form mgb_30">
             <%= simple_form_for @new_tweet, :url => "/tweets", :method => :post do |f| %>

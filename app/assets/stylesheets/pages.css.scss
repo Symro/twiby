@@ -190,6 +190,7 @@ hr{
 header{
 	padding: 30px;
 	color:#fff;
+	min-height: 150px;
 	// box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 	h1, h2 {
 		text-align: center;
@@ -317,7 +318,9 @@ header{
 		padding:20px;
 		background-color: #FFF;
 		margin-bottom: 30px;
+		margin-top: -60px;
 		overflow: hidden;
+		display: none;
 
 		textarea{
 			width: 100%;
@@ -447,8 +450,8 @@ header{
 			}
 			.user_picture{
 				flex:auto;
-				.picture{
-					background-image:url(/solion.jpg);
+				text-align: center;
+				img{
 					border-radius:50px;
 					border:5px solid #90e1e1;
 					background-size: 100%;
@@ -499,7 +502,7 @@ header{
 		&:hover{
 			background-color: $yellow_dark;
 			border-bottom:3px solid darken($yellow_dark, 10%);
-			transform: rotateX(85deg);
+			// transform: rotateX(85deg);
 			@include transition(all .5s);
 		}
 	}
@@ -517,9 +520,7 @@ header{
 	.users_nb_twib{
 		color: $grey_element_yell;
 	}
-
 }
-
 
 
 @media (min-width: 700px) {
