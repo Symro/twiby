@@ -6,9 +6,12 @@
 
 
 $grey: #f6f4f4;
-$grey_font: #dfdfdf;
+$grey_font: #8c8c8c;
+$grey_element_yell: #dfdfdf;
 $green:#23ee83;
+$green_dark:#54b4b4;
 $yellow:#fcfa26;
+$yellow_dark:#ecea03;
 $red:#ee5043;
 
 
@@ -18,6 +21,82 @@ $red:#ee5043;
     -webkit-transition: $transition;
     transition:         $transition;
 }
+
+@mixin din { 
+  font-family: “DINRegular”, Verdana, Arial, sans-serif;
+}
+
+
+@font-face {
+    font-family: 'dinregular';
+    src: url('../fonts/dinregularalternate-webfont.eot');
+    src: url('../fonts/dinregularalternate-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/dinregularalternate-webfont.woff') format('woff'),
+         url('../fonts/dinregularalternate-webfont.ttf') format('truetype'),
+         url('../fonts/dinregularalternate-webfont.svg#dinregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'dinlight';
+    src: url('../fonts/dinlight-webfont.eot');
+    src: url('../fonts/dinlight-webfont.eot?#iefix') format('embedded-opentype'),
+        
+         url('../fonts/dinlight-webfont.woff') format('woff'),
+         url('../fonts/dinlight-webfont.ttf') format('truetype'),
+         url('../fonts/dinlight-webfont.svg#dinlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'dinmedium';
+    src: url('../fonts/dinmedium-webfont.eot');
+    src: url('../fonts/dinmedium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/dinmedium-webfont.woff') format('woff'),
+         url('../fonts/dinmedium-webfont.ttf') format('truetype'),
+         url('../fonts/dinmedium-webfont.svg#dinmedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot?-wwnz3o');
+	src:url('../fonts/icomoon.eot?#iefix-wwnz3o') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?-wwnz3o') format('woff'),
+		url('../fonts/icomoon.ttf?-wwnz3o') format('truetype'),
+		url('../fonts/icomoon.svg?-wwnz3o#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-trash:before {content: "\74";}
+.icon-star:before {content: "\73";}
+.icon-perso:before {content: "\70";}
+.icon-off:before {content: "\6f";}
+.icon-edit:before {content: "\65";}
+.icon-check:before {content: "\63";}
+.icon-megaphone:before {content: "\6d";}
+
 
 
 html, body, div, span, applet, object, iframe,
@@ -45,6 +124,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: 'dinregular';
 }
 ol, ul {
 	list-style: none;
@@ -90,21 +170,59 @@ hr{
 	margin-bottom:50px;
 }
 
+.left_part{
+	float: left;
+	.logo{
+		width: 50px;
+		height: 50px;
+	}
+
+}
+.right_part{
+	float: right;
+	
+}
+
+.clear {
+  clear: both;
+  }
+
 header{
 	padding: 30px;
 	color:#fff;
-	margin-bottom:30px;
+	min-height: 150px;
 	// box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 	h1, h2 {
 		text-align: center;
 		text-transform: uppercase;
-
+		font-family: 'dinmedium';
 	}
+	h2{
+		font-size: 18px;
+		font-family: 'dinlight';
+		line-height: 25px;
+	}
+}
+
+.logo{
+	a{
+			background-image:url(/solion.jpg);
+	background-size: 100%;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	width: 50px;
+	height:50px;
+	border-radius: 50px;
+	}
+
 }
 .connect{
 	height:100%;
 	.title{
 		color:$yellow;
+		font-size: 38px;
+		letter-spacing: 2px;
+
 	}
 	.form-inputs{
 		label{
@@ -121,7 +239,9 @@ header{
 		.btn{
 			padding:15px;
 			border-radius:0;
+			font-family: 'dinmedium';
 			text-transform:uppercase;
+			font-size: 16px;
 			background-color: $yellow;
 			border:none;
 			border-bottom:4px solid #dcda2b;
@@ -147,7 +267,7 @@ header{
 	}
 }
 .container{
-	width: 90%;
+	//width: 90%;
 	margin: 0 auto;	
 	input,button{
 		border:none;
@@ -163,14 +283,44 @@ header{
 			cursor: pointer;
 		}
 	}
+	input{
+		font-family: 'dinmedium';
+		font-size: 14px;
+	}
+
 
 	a{
 		display: inherit;
 		text-transform: uppercase;
 	}
+
+	.profile_button{
+		display: flex;
+		padding:15px;
+		background-color: $green_dark;
+		@include transition(all .5s);
+	
+	&:hover{
+			background-color: darken($green_dark, 10%);
+			cursor: pointer;
+			@include transition(all .5s);
+		}
+		a{
+			color: #fff;
+			text-decoration: none;
+		}
+		i{
+			flex: 1;
+			margin-right: 10px;
+		}
+	}
 	.yell_form{
-		padding:30px;
+		padding:20px;
 		background-color: #FFF;
+		margin-bottom: 30px;
+		margin-top: -60px;
+		overflow: hidden;
+		display: none;
 
 		textarea{
 			width: 100%;
@@ -185,36 +335,222 @@ header{
 			resize: none;
 		}
 		.btn{
-			width: 110px;
+			float: right;
+			width: auto;
 			margin:0;
 			background-color: #23ee83;
 			color: #fff;
 			border:none;
 			border-bottom:3px solid #21dc79;
 			text-transform: uppercase;
+			&:hover{
+				background-color: darken($green, 10%);
+				border-bottom: 3px solid darken(#21dc79,10%);
+				cursor: pointer;
+			}
+
 		}
 		.nb_caract{
 			margin-bottom: 15px;
 			text-align:right;
-			color: $grey_font;
+			color: $grey_element_yell;
 		}
 	}
 	.yell_list{
 		background-color: #FFF;
-		padding:30px;
+		padding:20px;
 		ul{
-			padding:30px;
+			padding:20px;
 		}
 		li{
-			margin-bottom:30px; 
-			border-bottom:1px solid $grey_font;
+			display: flex;
+			display: -webkit-flex;
+			margin-bottom:30px;
+			padding-bottom: 30px; 
+			border-bottom:1px solid $grey;
+			.user_picture{
+				width: 70px;
+				img{
+
+					
+
+					border-radius:50px;
+					background-size: 100%;
+					width: 50px;
+					height: 50px;
+					margin-top: -10px;
+
+				}
+
+			}
+			.user_content{
+				width:50px;
+				flex:1;
+				word-wrap: break-word;					
+				p{
+					display: inline;
+					color:$grey_element_yell;
+				}
+				.head_yell{
+					margin-bottom: 15px;
+					overflow: hidden;
+					.user_name{
+						float:left;
+						a{
+							display: inline;
+							color: $green;
+							text-transform: capitalize;
+							text-decoration: none;
+							:hover{
+								cursor: pointer;
+							}
+						}
+						
+					}
+					.yell_time{
+						float:right;
+					}
+				}
+				.user_yell{
+					color: $grey_font;
+					line-height: 21px;
+					.user_actions{
+						margin-top: 15px;
+						a{
+							display: inline;
+							text-decoration: none;
+							color:$grey_element_yell;
+							font-size: 18px;
+							&:last-child{
+								float:right;
+							}
+						}
+						i:hover{
+							cursor: pointer;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.profile_user{
+		a{
+			color: #fff;
+			text-decoration:none;
+		}
+		.header_profil_user{
+			display: flex;
+			margin-bottom: 20px;
+			i{
+				border: 1px solid #fff;
+				border-radius:50px;
+				padding:10px;
+				margin-top: 10px;
+			}
+			.user_logout, .user_edit_profile{
+				flex:1;
+				margin-top: 45px;
+				text-align: center;
+			}
+			.user_picture{
+				flex:auto;
+				text-align: center;
+				img{
+					border-radius:50px;
+					border:5px solid #90e1e1;
+					background-size: 100%;
+					height: 90px;
+					width: 90px;
+					margin: 0 auto;
+				}
+			}
+		}
+		.user_name{
+			margin: 0 auto;
+			margin-bottom: 15px;
+			text-align: center;
+			font-size: 24px;
+			color:#fff;
+			text-transform: capitalize;
+			font-family: 'dinmedium';
+		}
+		.user_description{
+			text-align: center;
+			margin: 15px 0 50px 0;
+		}
+		.to_follow{
+			input{
+				width:auto;
+				margin: 0 auto;
+				margin-bottom: 50px;
+			}
+			.follow{
+				color: #fff;
+				padding: 15px 40px;
+				background-color: $yellow;
+				border-bottom:3px solid darken($yellow,10%);
+			}
+			.unfollow{
+				background-color: #60d4d4;
+				color: $green;
+			}
+		}
+		.follow{
+			display:flex;
+			margin-bottom: 50px;
+			.following, .follower{
+				flex:1;
+				text-align: center;
+				text-transform: uppercase;
+			}
+			.follower{
+				border-left: 1px solid #90e1e1;
+			}
+		}
+	}
+
+	.yell_something{
+		padding:20px;
+		margin-top: -50px;
+		margin-bottom: 40px;
+		font-family: 'dinmedium';
+		color: $red;
+		background-color: $yellow;
+		border-bottom:3px solid darken($yellow, 10%);
+		font-size: 14px;
+		letter-spacing: 2px;
+		@include transition(all .5s);
+		&:hover{
+			background-color: $yellow_dark;
+			border-bottom:3px solid darken($yellow_dark, 10%);
+			// transform: rotateX(85deg);
+			@include transition(all .5s);
 		}
 	}
 }
 .yell_index{
 	background-color: $grey;
-	padding:30px;
+	padding:20px;
 
 }
+.users_twib{
+	text-align:center;
+	color:$grey_font;
+	text-transform:uppercase;
+	margin-bottom:40px;
+	.users_nb_twib{
+		color: $grey_element_yell;
+	}
+}
 
+
+@media (min-width: 700px) {
+	.container{
+		width: 700px;
+	}
+
+
+
+}
 

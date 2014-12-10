@@ -1,19 +1,29 @@
 <header>
 
     <div class="container">
-        <p>Feed</p>
-        <% if user_signed_in? %>
-            <!-- logout link -->
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-            <%= link_to "Profile", controller: "users", action: "show", id: current_user.id %>
-      <% end %>
+        <div class="left_part">
+           <div class="logo mgb_20">
+            <%= link_to "", users_index_path %>
+           </div>
+       </div>
+        <div class="right_part">
+            <% if user_signed_in? %>
+                <!-- logout link -->
+                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 
+                <div class="profile_button">
+                    <i class="icon-perso"></i>
+                    <%= link_to "MY PROFILE", {controller: "pages", action: "profile", id: current_user.id }, class: '' %>
+                </div>
+
+            <% end %>
+        </div>
     </div>
 
 </header>
 
 
-<div class="yell_index">
+<div class="yell_index clear">
 
     <div class="container">
 
@@ -22,25 +32,43 @@
             <%= content_tag :div, msg, class: name %>
         <% end -%>
 
+        <button class="yell_something">Yell something !</button>
+
         <!-- form to tweet -->
         <div class="yell_form mgb_30">
-            <%= simple_form_for @new_tweet, :url => "/tweets/new", :method => :post do |f| %>
+            <%= simple_form_for @new_tweet, :url => "/tweets", :method => :post do |f| %>
                 <%= f.text_area :content, placeholder: 'Write something' %>
                 <p class="nb_caract">140</p>
                 <%= f.button :submit %>
             <% end %>
-
         </div>
 
         <!-- tweet feed of the user -->
-        <ul class="yell_list">
+        <ul class="yell_list clear">
             <% @tweet_list.each do |tweet| %>
                 <li>
-                    <%= tweet.user.username %>
-                    <br>
-                    <%= tweet.content %>
-                    <a href="" class="favorite">favorite</a>
-                    <a href="" class="garbage">garbage</a>
+                    <div class="user_picture">
+                          <%= image_tag(tweet.user.avatar.url(:small)) %>
+                    </div>
+                  
+
+                    <div class="user_content">
+                        <div class="head_yell">
+                            <div class="user_name">
+                                <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
+                            </div>
+                            <p class="yell_time">4sec</p>
+                        </div>
+                        <div class="user_yell">
+                            <%= tweet.content %>
+                            <div class="user_actions">
+                                <a href="#"><i class="icon-star"></i></a>
+                                <p>12</p>
+                                <a href="#"><i class="icon-trash"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
                 </li>
             <% end %>
         </ul>

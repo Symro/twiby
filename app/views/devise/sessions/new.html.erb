@@ -2,7 +2,8 @@
 <div class="connect">
 	<header>
 		<div class="container mgb_20">
-			
+
+			<div class="logo mgb_20"></div>
 			<h1 class="mgb_20 title">Twiby</h1>
 			<hr class="mgb_20">
 			<h2>The best place to yell what you want</h2>
@@ -15,7 +16,7 @@
 		<div class="container">
 			<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 			    <div class="form-inputs">
-			      <%= f.input :email, required: false, autofocus: true, placeholder: 'USERNAME' %>
+			      <%= f.input :email, required: false, autofocus: true, placeholder: 'EMAIL' %>
 			      <%= f.input :password, required: false, placeholder: 'PASSWORD' %>
 			      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
 			    </div>
@@ -28,8 +29,6 @@
 			<%= render "devise/shared/links" %>
 
 		</div>
-		
-
 	</div>
 
 
