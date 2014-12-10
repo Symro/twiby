@@ -149,3 +149,48 @@
 
 <% end %>
 
+
+
+NB DE PETITS FOLLOWERS : 
+
+<%= @user_followers.count %>
+
+
+NB DE PETITS FOLLOWING : 
+
+<%= @user_following.count %>
+
+
+LISTE DES FOLLOWERS : 
+
+<% @user_followers.each do |follower| -%>
+
+    <figure>
+      <%= link_to profile_id_path(follower.id), :class => "" do %>
+            <img src="<%= follower.avatar.url(:medium) %>" alt="<%= follower.username %>" />
+            <figcaption><%= follower.username %></figcaption>
+      <% end %>
+    </figure>
+
+<% end -%>
+
+LISTE DES FOLLOWING : 
+
+<% @user_following.each do |following| -%>
+
+    <figure>
+      <%= link_to profile_id_path(following.id), :class => "" do %>
+            <img src="<%= following.avatar.url(:medium) %>" alt="<%= following.username %>" />
+            <figcaption><%= following.username %></figcaption>
+      <% end %>
+    </figure>
+
+<% end -%>
+
+AVATAR 90x90 : 
+
+<%= image_tag(current_user.avatar.url(:medium)) %>
+
+AVATAR 60x60 : 
+
+<%= image_tag(current_user.avatar.url(:small)) %>
