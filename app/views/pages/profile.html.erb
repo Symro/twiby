@@ -29,7 +29,7 @@
 	          		<i class="icon-off"></i>
 	          	</div>
 	        	<div class="user_picture">
-	        		<div class="picture"></div>
+	        		<div class="picture"><%= image_tag(@user.avatar.url(:medium)) %></div>
 	        	</div>
 	        	<div class="user_edit_profile">
 	        		<i class="icon-edit"></i>
@@ -47,10 +47,10 @@
 
     	    <div class="follow">
     	    	<div class="following">
-    	    		12 Following
+    	    		<%= @user_following.count %> Following
     	    	</div>
     	    	<div class="follower">
-    	    		12 Followers
+    	    		<%= @user_followers.count %> Followers
     	    	</div>
     	    </div>
         </div>
@@ -149,16 +149,6 @@
 
 <% end %>
 
-
-
-NB DE PETITS FOLLOWERS : 
-
-<%= @user_followers.count %>
-
-
-NB DE PETITS FOLLOWING : 
-
-<%= @user_following.count %>
 
 
 LISTE DES FOLLOWERS : 
