@@ -3,7 +3,9 @@
 
     <div class="container">
         <div class="left_part">
-            <div class="logo mgb_20"></div>
+            <div class="logo mgb_20">
+            	<%= link_to "", users_index_path %>
+            </div>
         </div>
         <div class="right_part">
             <% if user_signed_in? %>
@@ -12,41 +14,53 @@
 
                 <div class="profile_button">
                     <i class="icon-perso"></i>
-                    <%= link_to "Profile", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
+                    <%= link_to "MY PROFILE", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
                 </div>
 
             <% end %>
         </div>
 
-
         <div class="profile_user clear ">
+        	<div class="header_profil_user">
 
-<!--           <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
-          	<div class="user_logout">
-          		<i class="icon-off"></i>
-          	</div>
-        	<div class="user_picture">
-        		<div class="picture"></div>
-        	</div>
-        	<div class="user_edit_profile">
-        		<i class="icon-edit"></i>
-        	</div>
+	          	<div class="user_logout">
+
+	          		<!-- <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
+	          		<i class="icon-off"></i>
+	          	</div>
+	        	<div class="user_picture">
+	        		<div class="picture"></div>
+	        	</div>
+	        	<div class="user_edit_profile">
+	        		<i class="icon-edit"></i>
+	        	</div>
+		    </div>
+        		
+            <div class="user_name">
+            	<%= @user.username %>
+            </div>
+            <hr>
+            <div class="user_description">
+    	        <%= @user.description %>
+    	        <p>kjonfo enj enijd nn juznf zunz nz nfzjn fijzn jndsibv dshvb sdhbv dbv djnv dkjsn jezn enze ufne zfnezfjne fnzvnzvzjn</p>
+    	    </div>
+
+    	    <div class="follow">
+    	    	<div class="following">
+    	    		12 Following
+    	    	</div>
+    	    	<div class="follower">
+    	    		12 Followers
+    	    	</div>
+    	    </div>
         </div>
-        <div class="user_name clear">
-        	<%= @user.username %>
-        </div>
-        <div class="user_description clear">
-	        <%= @user.description %>
-	        <p>kjonfo enj enijd nn juznf zunz nz nfzjn fijzn jndsibv dshvb sdhbv dbv djnv dkjsn jezn enze ufne zfnezfjne fnzvnzvzjn</p>
-	    </div>
     </div>
-
 </header>
 
 
-<%= link_to "Feed", users_index_path %>
 
 
+<!-- 
 <h2>User profile</h2>
 <br>
 <p>Username :</p>
@@ -59,17 +73,20 @@
 
 <br><br>
 
-<p>Tweets :</p>
+<p>Tweets :</p> -->
 
 <div class="yell_index clear">
     <div class="container">
+
+		<button class="yell_something">Yell something !</button>
+
     	<p class="users_twib">My Twibs <span class="users_nb_twib">- 3 465</span></p>
     	<ul class="yell_list clear">	
 			<% if @user_tweet.any?  %>
 	  			<% @user_tweet.each do |tweet| %>
 	   			<li>
 	   				<div class="user_picture">
-	   				      <div class="user_picts"></div>
+	   				    <div class="user_picts"></div>
 	   				</div>
 
 	   				<div class="user_content">

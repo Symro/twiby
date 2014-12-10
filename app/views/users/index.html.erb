@@ -2,8 +2,10 @@
 
     <div class="container">
         <div class="left_part">
-            <div class="logo mgb_20"></div>
-        </div>
+           <div class="logo mgb_20">
+            <%= link_to "", users_index_path %>
+           </div>
+       </div>
         <div class="right_part">
             <% if user_signed_in? %>
                 <!-- logout link -->
@@ -11,7 +13,7 @@
 
                 <div class="profile_button">
                     <i class="icon-perso"></i>
-                    <%= link_to "Profile", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
+                    <%= link_to "MY PROFILE", {controller: "pages", action: "profile", id: current_user.id }, class: '' %>
                 </div>
 
             <% end %>

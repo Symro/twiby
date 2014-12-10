@@ -11,6 +11,7 @@ $grey_element_yell: #dfdfdf;
 $green:#23ee83;
 $green_dark:#54b4b4;
 $yellow:#fcfa26;
+$yellow_dark:#ecea03;
 $red:#ee5043;
 
 
@@ -203,13 +204,16 @@ header{
 }
 
 .logo{
-	background-image:url(/solion.jpg);
+	a{
+			background-image:url(/solion.jpg);
 	background-size: 100%;
 	margin: 0 auto;
 	margin-bottom: 20px;
-	width: 100px;
-	height:100px;
+	width: 50px;
+	height:50px;
 	border-radius: 50px;
+	}
+
 }
 .connect{
 	height:100%;
@@ -293,9 +297,12 @@ header{
 		display: flex;
 		padding:15px;
 		background-color: $green_dark;
-		&:hover{
+		@include transition(all .5s);
+	
+	&:hover{
 			background-color: darken($green_dark, 10%);
 			cursor: pointer;
+			@include transition(all .5s);
 		}
 		a{
 			color: #fff;
@@ -424,36 +431,76 @@ header{
 	}
 
 	.profile_user{
-		display: flex;
-		i{
-			border: 1px solid #fff;
-			border-radius:50px;
-			padding:10px;
-			margin-top: 10px;
-		}
-		.user_logout, .user_edit_profile{
-			flex:1;
-			margin-top: 45px;
-			text-align: center;
-		}
-		.user_picture{
-			flex:auto;
-			.picture{
-				background-image:url(/solion.jpg);
+		.header_profil_user{
+			display: flex;
+			margin-bottom: 20px;
+			i{
+				border: 1px solid #fff;
 				border-radius:50px;
-				border:5px solid #90e1e1;
-				background-size: 100%;
-				height: 90px;
-				width: 90px;
-				margin: 0 auto;
+				padding:10px;
+				margin-top: 10px;
+			}
+			.user_logout, .user_edit_profile{
+				flex:1;
+				margin-top: 45px;
+				text-align: center;
+			}
+			.user_picture{
+				flex:auto;
+				.picture{
+					background-image:url(/solion.jpg);
+					border-radius:50px;
+					border:5px solid #90e1e1;
+					background-size: 100%;
+					height: 90px;
+					width: 90px;
+					margin: 0 auto;
+				}
 			}
 		}
 		.user_name{
 			margin: 0 auto;
+			margin-bottom: 15px;
 			text-align: center;
+			font-size: 24px;
 			color:#fff;
+			text-transform: capitalize;
+			font-family: 'dinmedium';
+		}
+		.user_description{
+			text-align: center;
+			margin: 15px 0 50px 0;
+		}
+		.follow{
+			display:flex;
+			margin-bottom: 50px;
+			.following, .follower{
+				flex:1;
+				text-align: center;
+				text-transform: uppercase;
+			}
+			.follower{
+				border-left: 1px solid #90e1e1;
+			}
+		}
+	}
 
-
+	.yell_something{
+		padding:20px;
+		margin-top: -50px;
+		margin-bottom: 40px;
+		font-family: 'dinmedium';
+		color: $red;
+		background-color: $yellow;
+		border-bottom:3px solid darken($yellow, 10%);
+		font-size: 14px;
+		letter-spacing: 2px;
+		@include transition(all .5s);
+		&:hover{
+			background-color: $yellow_dark;
+			border-bottom:3px solid darken($yellow_dark, 10%);
+			transform: rotateX(85deg);
+			@include transition(all .5s);
 		}
 	}
 }
@@ -466,7 +513,7 @@ header{
 	text-align:center;
 	color:$grey_font;
 	text-transform:uppercase;
-	margin-bottom:15px;
+	margin-bottom:40px;
 	.users_nb_twib{
 		color: $grey_element_yell;
 	}
