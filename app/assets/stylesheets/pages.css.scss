@@ -370,9 +370,10 @@ header{
 			border-bottom:1px solid $grey;
 			.user_picture{
 				width: 70px;
-				.user_picts{
+				img{
 
-					background-image:url(/solion.jpg);
+					
+
 					border-radius:50px;
 					background-size: 100%;
 					width: 50px;
@@ -434,6 +435,10 @@ header{
 	}
 
 	.profile_user{
+		a{
+			color: #fff;
+			text-decoration:none;
+		}
 		.header_profil_user{
 			display: flex;
 			margin-bottom: 20px;
@@ -473,6 +478,23 @@ header{
 		.user_description{
 			text-align: center;
 			margin: 15px 0 50px 0;
+		}
+		.to_follow{
+			input{
+				width:auto;
+				margin: 0 auto;
+				margin-bottom: 50px;
+			}
+			.follow{
+				color: #fff;
+				padding: 15px 40px;
+				background-color: $yellow;
+				border-bottom:3px solid darken($yellow,10%);
+			}
+			.unfollow{
+				background-color: #60d4d4;
+				color: $green;
+			}
 		}
 		.follow{
 			display:flex;

@@ -48,7 +48,7 @@
             <% @tweet_list.each do |tweet| %>
                 <li>
                     <div class="user_picture">
-                          <div class="user_picts"></div>
+                          <%= image_tag(tweet.user.avatar.url(:small)) %>
                     </div>
                   
 
