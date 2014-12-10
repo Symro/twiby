@@ -140,7 +140,7 @@
 	   				            <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
 	   				        </div>
 	   				        <p class="yell_time">
-	   				        	<%= tweet.created_at.strftime('%m/%d/%Y %H:%M') %>
+	   				        	<%= tweet.created_at %>
 	   				        </p>
 	   				    </div>
 	   				    <div class="user_yell">
@@ -152,6 +152,12 @@
 	   				        </div>
 	   				    </div>
 	  			<% end %>
+                <script>
+                    $(".yell_time").each(function(i,el){
+                        $(this).html(moment($(this).html()).fromNow());
+                    });
+                </script>
+
 			<% else %>
 	  			Never Tweeted :(
 				</li>
