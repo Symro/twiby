@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   has_many :passive_follows, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy
   has_many :followers, through: :passive_follows, source: :follower
 
+  has_attached_file :avatar, :styles => { :small => "60x60#", :medium => "90x90#" }, :default_url => "/images/:style/no_avatar.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+
 end

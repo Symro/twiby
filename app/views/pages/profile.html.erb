@@ -150,7 +150,7 @@ LISTE DES FOLLOWERS :
 
     <figure>
       <%= link_to profile_id_path(follower.id), :class => "" do %>
-            <img src="<%= follower.avatar %>" alt="<%= follower.username %>" />
+            <img src="<%= follower.avatar.url(:medium) %>" alt="<%= follower.username %>" />
             <figcaption><%= follower.username %></figcaption>
       <% end %>
     </figure>
@@ -163,9 +163,17 @@ LISTE DES FOLLOWING :
 
     <figure>
       <%= link_to profile_id_path(following.id), :class => "" do %>
-            <img src="<%= following.avatar %>" alt="<%= following.username %>" />
+            <img src="<%= following.avatar.url(:medium) %>" alt="<%= following.username %>" />
             <figcaption><%= following.username %></figcaption>
       <% end %>
     </figure>
 
 <% end -%>
+
+AVATAR 90x90 : 
+
+<%= image_tag(current_user.avatar.url(:medium)) %>
+
+AVATAR 60x60 : 
+
+<%= image_tag(current_user.avatar.url(:small)) %>
