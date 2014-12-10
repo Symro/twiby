@@ -17,8 +17,8 @@ class PagesController < ApplicationController
 
     @follow     = Follow.new
 
-    @user_followers = current_user.followers
-    @user_following = current_user.following
+    @user_followers = @user.followers
+    @user_following = @user.following
 
     # Check if the current user follow this profile
     if Follow.where(follower_id: current_user.id, followed_id: params[:id]).present?
