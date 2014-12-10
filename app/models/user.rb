@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_many :favorites
 
+  has_many :active_follows, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
+  has_many :following, through: :active_follows, source: :followed
+
 end
