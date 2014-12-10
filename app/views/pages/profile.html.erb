@@ -23,17 +23,20 @@
 	          	<div class="user_logout">
 
 	          		<!-- <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
-                    <%= link_to destroy_user_session_path, :method => :delete do %>
-	          		   <i class="icon-off"></i>
+                    <% if @user.id == current_user.id %>
+                        <%= link_to destroy_user_session_path, :method => :delete do %>
+    	          		   <i class="icon-off"></i>
+                        <% end %>
                     <% end %>
-
 	          	</div>
 	        	<div class="user_picture">
 	        		<div class="picture"><%= image_tag(@user.avatar.url(:medium)) %></div>
 	        	</div>
 	        	<div class="user_edit_profile">
-                    <%= link_to edit_user_registration_path do %>
-	        	        <i class="icon-edit"></i>
+                    <% if @user.id == current_user.id %>
+                        <%= link_to edit_user_registration_path do %>
+    	        	        <i class="icon-edit"></i>
+                        <% end %>
                     <% end %>
 	        	</div>
 		    </div>
@@ -59,8 +62,6 @@
 </header>
 
 
-
-
 <!-- 
 <h2>User profile</h2>
 <br>
@@ -81,7 +82,7 @@
 
 		<button class="yell_something">Yell something !</button>
 
-    	<p class="users_twib">My Twibs <span class="users_nb_twib">- 3 465</span></p>
+    	<p class="users_twib"><%= (@user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- 3 465</span></p>
     	<ul class="yell_list clear">	
 			<% if @user_tweet.any?  %>
 	  			<% @user_tweet.each do |tweet| %>
