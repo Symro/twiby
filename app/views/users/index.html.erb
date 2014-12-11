@@ -22,9 +22,7 @@
 
 
 <div class="yell_index clear">
-
     <div class="container">
-
         <!-- error display from form tweet -->
         <% flash.each do |name, msg| -%>
             <%= content_tag :div, msg, class: name %>
@@ -48,8 +46,6 @@
                     <div class="user_picture">
                           <%= image_tag(tweet.user.avatar.url(:small)) %>
                     </div>
-                  
-
                     <div class="user_content">
                         <div class="head_yell">
                             <div class="user_name">
@@ -60,18 +56,19 @@
                         <div class="user_yell">
                             <%= tweet.content %>
                             <div class="user_actions">
-                                <a href="#"><i class="icon-star"></i></a>
-                                <p>12</p>
+                                <span class="favorite">
+                                    <a href="#">
+                                        <i class="icon-star"></i>
+                                    </a>
+                                    <p>12</p>
+                                </span>
                                 <a href="#"><i class="icon-trash"></i></a>
-
                             </div>
                         </div>
                     </div>
                 </li>
             <% end %>
         </ul>
-
     </div>
-
 </div>
 

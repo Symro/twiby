@@ -206,23 +206,21 @@ header{
 
 .logo{
 	a{
-			background-image:url(/solion.jpg);
-	background-size: 100%;
-	margin: 0 auto;
-	margin-bottom: 20px;
-	width: 50px;
-	height:50px;
-	border-radius: 50px;
+		background-image: url(/logo-big.png);
+		background-repeat: no-repeat;
+		background-size: 100%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		width: 50px;
+		height: 50px;
 	}
-
 }
 .connect{
-	height:100%;
+	height: 100%;
 	.title{
-		color:$yellow;
+		color: $yellow;
 		font-size: 38px;
 		letter-spacing: 2px;
-
 	}
 	.form-inputs{
 		label{
@@ -237,48 +235,60 @@ header{
 	}
 	.form-actions{
 		.btn{
-			padding:15px;
-			border-radius:0;
+			padding: 15px;
+			border-radius: 0;
 			font-family: 'dinmedium';
-			text-transform:uppercase;
+			text-transform: uppercase;
 			font-size: 16px;
 			background-color: $yellow;
-			border:none;
-			border-bottom:4px solid #dcda2b;
+			border: none;
+			border-bottom: 4px solid #dcda2b;
 			color: $red;
 			@include transition(all .5s);
-			
 			&:hover{
 				cursor: pointer;
 				background-color: darken($yellow, 10%);
-				border-bottom:4px solid darken(#dcda2b, 10%);
+				border-bottom: 4px solid darken(#dcda2b, 10%);
 				box-shadow: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 				@include transition(all .5s);
 			}
 		}
 	}
 }
-
 .sign_in{
 	a{
-		text-align:center;
-		color:#afafaf;
+		text-align: center;
+		color: #afafaf;
 		text-decoration: none;
 	}
 }
 .container{
 	//width: 90%;
 	margin: 0 auto;	
+	position: relative;
+	.yell_it_btn{
+		position: fixed;
+		background-image: url(/logo-big.png);
+		background-size: 100%;
+		background-repeat: no-repeat;
+		border-radius: 50px;
+		width: 50px;
+		height: 50px;
+		bottom: 50px;
+		right: 0px;	
+		box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+		display: none;
+	}
 	input,button{
-		border:none;
+		border: none;
 		width: 100%;
-		padding:15px;
+		padding: 15px;
 		display: block;
 		margin-bottom: 20px;
 		box-sizing: border-box;
 	}
 	button{
-		text-transform:uppercase;
+		text-transform: uppercase;
 		&:hover{
 			cursor: pointer;
 		}
@@ -287,19 +297,15 @@ header{
 		font-family: 'dinmedium';
 		font-size: 14px;
 	}
-
-
 	a{
 		display: inherit;
 		text-transform: uppercase;
 	}
-
 	.profile_button{
 		display: flex;
 		background-color: $green_dark;
-		@include transition(all .5s);
-	
-	&:hover{
+		@include transition(all .5s);	
+		&:hover{
 			background-color: darken($green_dark, 10%);
 			cursor: pointer;
 			@include transition(all .5s);
@@ -321,7 +327,6 @@ header{
 		margin-top: -60px;
 		overflow: hidden;
 		display: none;
-
 		textarea{
 			width: 100%;
 			height: 100px;
@@ -348,7 +353,6 @@ header{
 				border-bottom: 3px solid darken(#21dc79,10%);
 				cursor: pointer;
 			}
-
 		}
 		.nb_caract{
 			margin-bottom: 15px;
@@ -371,17 +375,12 @@ header{
 			.user_picture{
 				width: 70px;
 				img{
-
-					
-
 					border-radius:50px;
 					background-size: 100%;
 					width: 50px;
 					height: 50px;
 					margin-top: -10px;
-
 				}
-
 			}
 			.user_content{
 				width:50px;
@@ -404,8 +403,7 @@ header{
 							:hover{
 								cursor: pointer;
 							}
-						}
-						
+						}						
 					}
 					.yell_time{
 						float:right;
@@ -416,6 +414,11 @@ header{
 					line-height: 21px;
 					.user_actions{
 						margin-top: 15px;
+						.favorite{
+							&:hover{								
+								color: $grey_font;
+							}								
+						}
 						a{
 							display: inline;
 							text-decoration: none;
@@ -426,6 +429,7 @@ header{
 							}
 						}
 						i:hover{
+							color: $grey_font;
 							cursor: pointer;
 						}
 					}
@@ -433,7 +437,6 @@ header{
 			}
 		}
 	}
-
 	.profile_user{
 		a{
 			color: #fff;
@@ -544,13 +547,75 @@ header{
 	}
 }
 
+.modal_box{
+	position: fixed;
+	z-index: 9998;
+	top: 0;
+	left: 0;
+	display:none;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.6);
+	p{
+		position: fixed;
+		top: 40px;
+		left: 50%;
+		margin-left: -8px;
+		color: #fff;
+		font-size: 2em;	
+	}
+	.modal_follower,.modal_following{
+		position: absolute;
+		z-index: 9999;
+		top: -30%;
+		left: 50%;
+		margin:0 auto;
+		margin-left: -35%;
+		display:none;
+		max-height: 300px;
+		width: 70%;
+		padding: 24px 20px;
+		border-radius: 2px;
+		background: #fff;
+		box-sizing: border-box;
+		overflow: auto;
+		@include transition(all .5s);
+		h4{
+			text-align:center;
+			color: $grey_font;
+			text-transform: uppercase;
+			margin-bottom:30px;
+		}
+		.followers_box,.following_box{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content:space-between;
+			figure{
+				flex: 1 120px;
+				text-align: center;
+				flex-wrap: wrap;
+				margin-bottom: 40px;
+				a{
+					text-decoration: none;
+				}
+				figcaption{
+					color:$green;
+				}
+			}	
+		}
+	}
+	.modal_window_visible{
+		top:33%;
+		@include transition(all .5s);
+	}
+	.visible{
+		opacity:1;
+	}
+}
 
 @media (min-width: 700px) {
 	.container{
 		width: 700px;
 	}
-
-
-
 }
 

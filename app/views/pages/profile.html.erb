@@ -21,7 +21,6 @@
 
         <div class="profile_user clear ">
         	<div class="header_profil_user">
-
 	          	<div class="user_logout">
 
 	          		<!-- <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
@@ -51,7 +50,6 @@
     	        <p><%= @user.description %></p>
     	    </div>
 
-
 			<div class="to_follow">
 				<!-- Formulaire de follow / unfollow -->
 				<% if @following === true %>
@@ -62,7 +60,9 @@
 
 				      <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
 
-				      <%= f.button :submit, "Followed", class: 'unfollow' %>
+				      <%= f.button :submit, "Followed", class: 'unfollow icon-off' do %>
+				      		<i class="icon-off"></i>
+				      <% end %>
 				    <% end %>
 
 				<% else %>
@@ -79,20 +79,57 @@
 
 				<% end %>
 			</div>
-
-
-
     	    <div class="follow">
     	    	<div class="following">
-    	    		<%= @user_following.count %> Following
+    	    		<a href="#" class="modal_following"> 
+    	    			<%= @user_following.count %> Following
+    	    		</a>
     	    	</div>
+
     	    	<div class="follower">
-    	    		<%= @user_followers.count %> Followers
+    	    		<a href="#" class="modal_follower">    	    		
+    	    			<%= @user_followers.count %> Followers
+    	    		</a>
     	    	</div>
     	    </div>
         </div>
     </div>
 </header>
+
+
+
+<div class="modal_box">
+	<p class="close_modal">X</p>
+
+	<div class="modal_follower">
+		<h4>Followers</h4>
+		<div class="followers_box">
+			<% @user_followers.each do |follower| -%>
+			    <figure>
+			      <%= link_to profile_id_path(follower.id), :class => "" do %>
+			            <img src="<%= follower.avatar.url(:small) %>" alt="<%= follower.username %>" />
+			            <figcaption><%= follower.username %></figcaption>
+			      <% end %>
+			    </figure>
+			<% end -%>
+		</div>
+	</div>
+
+	<div class="modal_following">
+		<h4>Following</h4>
+		<div class="following_box">
+			<% @user_following.each do |following| -%>
+			    <figure>
+			      <%= link_to profile_id_path(following.id), :class => "" do %>
+			            <img src="<%= following.avatar.url(:small) %>" alt="<%= following.username %>" />
+			            <figcaption><%= following.username %></figcaption>
+			      <% end %>
+			    </figure>
+			<% end -%>
+		</div>
+	</div>
+</div>
+
 
 
 <!-- 
@@ -131,9 +168,7 @@
 	  			<% @user_tweet.each do |tweet| %>
 	   			<li>
 	   				<div class="user_picture">
-	   				    
-	   				    	<%= image_tag(tweet.user.avatar.url(:small)) %>
-
+	   				   	<%= image_tag(tweet.user.avatar.url(:small)) %>
 	   				</div>
 
 	   				<div class="user_content">
@@ -148,8 +183,10 @@
 	   				    <div class="user_yell">
 	   				        <%= tweet.content %>
 	   				        <div class="user_actions">
-	   				            <a href="#"><i class="icon-star"></i></a>
-	   				            <p>12</p>
+	   				        	<span class="favorite">
+	   				        		<a href="#"><i class="icon-star"></i></a>
+	   				        		<p>12</p>
+	   				         	</span>
 	   				            <a href="#"><i class="icon-trash"></i></a>
 	   				        </div>
 	   				    </div>
@@ -164,6 +201,7 @@
 	  			Never Tweeted :(
 				</li>
 			<% end %>
+			<div class="yell_it_btn"></div>
 		</ul>
 	</div>
 </div>
@@ -178,31 +216,11 @@
 
 
 
-LISTE DES FOLLOWERS : 
 
-<% @user_followers.each do |follower| -%>
-
-    <figure>
-      <%= link_to profile_id_path(follower.id), :class => "" do %>
-            <img src="<%= follower.avatar.url(:small) %>" alt="<%= follower.username %>" />
-            <figcaption><%= follower.username %></figcaption>
-      <% end %>
-    </figure>
-
-<% end -%>
 
 LISTE DES FOLLOWING : 
 
-<% @user_following.each do |following| -%>
 
-    <figure>
-      <%= link_to profile_id_path(following.id), :class => "" do %>
-            <img src="<%= following.avatar.url(:small) %>" alt="<%= following.username %>" />
-            <figcaption><%= following.username %></figcaption>
-      <% end %>
-    </figure>
-
-<% end -%>
 
 AVATAR 90x90 : 
 
