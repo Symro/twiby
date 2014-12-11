@@ -52,32 +52,34 @@
 
 			<div class="to_follow">
 				<!-- Formulaire de follow / unfollow -->
-				<% if @following === true %>
+                <% unless @user.id == current_user.id %>
+                    <% if @following === true %>
 
-				    <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
+                        <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
 
-				      <%= f.error_notification %>
+                          <%= f.error_notification %>
 
-				      <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+                          <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
 
-				      <%= f.button :submit, "Followed", class: 'unfollow icon-off' do %>
-				      		<i class="icon-off"></i>
-				      <% end %>
-				    <% end %>
+                          <%= f.button :submit, "Followed", class: 'unfollow icon-off' do %>
+                                <i class="icon-off"></i>
+                          <% end %>
+                        <% end %>
 
-				<% else %>
+                    <% else %>
 
-				    <%= simple_form_for @follow do |f| %>
+                        <%= simple_form_for @follow do |f| %>
 
-				        <%= f.error_notification %>
+                            <%= f.error_notification %>
 
-				        <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+                            <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
 
-				        <%= f.button :submit, "Follow", class: 'follow' %>
+                            <%= f.button :submit, "Follow", class: 'follow' %>
 
-				    <% end %>
+                        <% end %>
 
-				<% end %>
+                    <% end %>
+                <% end %>
 			</div>
     	    <div class="follow">
     	    	<div class="following">
