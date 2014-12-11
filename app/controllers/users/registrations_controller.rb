@@ -36,7 +36,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def after_update_path_for(resource)
+    profile_id_path(:id => current_user.id)
+  end
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_up_params

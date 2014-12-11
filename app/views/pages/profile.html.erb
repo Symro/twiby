@@ -229,3 +229,8 @@ AVATAR 90x90 :
 AVATAR 60x60 : 
 
 <%= image_tag(current_user.avatar.url(:small)) %>
+
+<!-- Edit form -->
+<% if @user.id == current_user.id %>
+    <%= render 'devise/registrations/edit' %>
+<% end %>

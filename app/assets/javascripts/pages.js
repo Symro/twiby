@@ -4,13 +4,14 @@
 $(document).ready(function(){
 
 
-	$('.yell_something').on('click',function(){
-		$(this).fadeOut();
-		setTimeout(function(){
-			$('.yell_form').fadeIn();
-		},500);
-	});
+    $('.yell_something').on('click',function(){
+        $(this).fadeOut();
+        setTimeout(function(){
+            $('.yell_form').fadeIn();
+        },500);
+    });
 
+<<<<<<< HEAD
 	
 	$(window).scroll(function(){
 		if ($(this).scrollTop() > 100) {
@@ -56,6 +57,24 @@ $(document).ready(function(){
 		},300);
 	});
 
+=======
+    // edit form
+    $('.edit_user').on('submit', function(e){
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/users',
+            data: data
+        })
+        .done(function(){
+            console.log('done');
+        })
+        .fail(function(){
+            console.log('error');
+        })
+    });
+>>>>>>> 79a199b86d608bde1d9de820f4e23ce69ced7d98
 
 });
 
