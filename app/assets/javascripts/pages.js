@@ -71,5 +71,11 @@ $(document).ready(function(){
             console.log('error');
         })
     });
+
+    $(".yell_time").each(function(i,el){
+        $(this).html(moment($(this).html()).fromNow());
+    });
+
+    
 });
 
