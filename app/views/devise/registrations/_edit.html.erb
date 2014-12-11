@@ -1,0 +1,22 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= simple_form_for(current_user, url: user_registration_path, html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, required: true, autofocus: true %>
+
+    <%= f.text_area :description, autocomplete: 'off', hint: 'description here', required: false %>
+
+    <%= f.label :avatar, class: ''  %>
+    <%= f.file_field :avatar %>
+
+    <%= f.input :password, autocomplete: 'off', hint: "leave it blank if you don't want to change it", required: false %>
+    <%= f.input :password_confirmation, required: false %>
+    <%= f.input :current_password, hint: 'we need your current password to confirm your changes', required: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Update' %>
+  </div>
+<% end %>
