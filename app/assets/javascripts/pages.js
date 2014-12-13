@@ -83,10 +83,6 @@ $(document).ready(function(){
         })
     });
 
-    $(".yell_time").each(function(i,el){
-        $(this).html(moment($(this).html()).fromNow());
-    });
-
     // Count characters
     $('#tweet_content').keyup(function () {
         var max = 140;

@@ -58,7 +58,7 @@
                                 <div class="user_name">
                                     <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
                                 </div>
-                                <p class="yell_time"><%= tweet.created_at %></p>
+                                <p class="yell_time"><%= time_ago_in_words(tweet.created_at) %></p>
                             </div>
                             <div class="user_yell">
                                 <%= tweet.content %>
