@@ -10,4 +10,3 @@ class Tweet < ActiveRecord::Base
   has_many :favs, through: :current_favorites, source: :tweet
 
 end
-(10)
