@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  skip_before_action :authenticate_user!, only: [:profile]
+
   def index
   end
 
@@ -17,7 +19,7 @@ class PagesController < ApplicationController
     @user_following = @user.following
 
     # Check if the current user follow this profile
-    if Follow.where(follower_id: current_user.id, followed_id: params[:id]).present?
+    if current_user and Follow.where(follower_id: current_user.id, followed_id: params[:id]).present?
       @following = true;
     end
 
