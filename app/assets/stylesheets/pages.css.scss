@@ -188,7 +188,6 @@ hr{
   }
 
 header{
-	padding: 30px;
 	color:#fff;
 	min-height: 150px;
 	// box-shadow: 0 2px 5px rgba(0,0,0,0.26);
@@ -213,6 +212,17 @@ header{
 		margin-bottom: 20px;
 		width: 50px;
 		height: 50px;
+	}
+}
+.logo_subscribe{
+	a{
+		background-image: url(/logo-big.png);
+		background-repeat: no-repeat;
+		background-size: 100%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		width: 100px;
+		height: 100px;
 	}
 }
 .connect{
@@ -265,6 +275,7 @@ header{
 .container{
 	//width: 90%;
 	margin: 0 auto;	
+	padding: 30px;
 	position: relative;
 	.yell_it_btn{
 		position: fixed;
@@ -283,6 +294,8 @@ header{
 		border: none;
 		width: 100%;
 		padding: 15px;
+		max-width: 300px;
+		margin: 0 auto;
 		display: block;
 		margin-bottom: 20px;
 		box-sizing: border-box;
@@ -296,6 +309,9 @@ header{
 	input{
 		font-family: 'dinmedium';
 		font-size: 14px;
+		&:focus{
+			outline: none;
+		}
 	}
 	a{
 		display: inherit;
@@ -547,7 +563,6 @@ header{
 }
 .yell_index{
 	background-color: $grey;
-	padding:20px;
 
 }
 .users_twib{
