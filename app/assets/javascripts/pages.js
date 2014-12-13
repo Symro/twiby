@@ -45,10 +45,19 @@ $(document).ready(function(){
 		},300);
 	});
 
+	$('.icon-edit').on('click',function(e){
+		e.preventDefault();
+		$('.modal_box').fadeIn();
+		setTimeout(function(){
+			$('.modal_edit_profile').fadeIn().addClass('modal_window_visible');
+		},300);
+	});
+
 	$('.close_modal').on('click',function(e){
 		e.preventDefault();
 		$('.modal_following').removeClass('modal_window_visible');
 		$('.modal_follower').removeClass('modal_window_visible');
+		$('.modal_edit_profile').removeClass('modal_window_visible');
 
 		setTimeout(function(){
 			$('.modal_box').fadeOut();
@@ -66,6 +75,7 @@ $(document).ready(function(){
         })
         .done(function(){
             console.log('done');
+            location.reload();
         })
         .fail(function(){
             console.log('error');
