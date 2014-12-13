@@ -432,6 +432,7 @@ header{
 							color: $grey_font;
 							cursor: pointer;
 						}
+						.form_favorite,
 						.form_delete{
 							float:right;
 
@@ -443,6 +444,9 @@ header{
 								padding:0;
 								margin:0;
 							}
+						}
+						.form_favorite{
+							float:left;
 						}
 
 					}

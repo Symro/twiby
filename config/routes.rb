@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # CRUD for follows
   resources :follows
 
+  # CRUD for favorites
+  resources :favorites
+
   get 'users/index'
   get '/' => 'users#index'
   

@@ -58,9 +58,19 @@
                                 <%= tweet.content %>
                                 <div class="user_actions">
                                     <span class="favorite">
-                                        <a href="#">
-                                            <i class="icon-star"></i>
-                                        </a>
+                                        <%# if tweet.user.id != current_user.id %>
+                                            <%= form_tag({:controller => :favorites, :action => 'create', :id => tweet.id }, :method => :create, :class => "form_favorite") do %>
+                                              <% button_tag(type: 'submit') do %>
+                                                <i class="icon-star"></i> Ajouter 
+                                              <% end %>
+                                            <% end %>
+
+                                            <%= form_tag({:controller => :favorites, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_favorite") do %>
+                                              <% button_tag(type: 'submit') do %>
+                                                <i class="icon-star"></i> Supprimer 
+                                              <% end %>
+                                            <% end %>
+                                        <%# end %>
                                         <p>12</p>
                                     </span>
                                     <% if tweet.user.id == current_user.id %>
