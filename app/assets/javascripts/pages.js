@@ -75,6 +75,7 @@ $(document).ready(function(){
         })
         .done(function(){
             console.log('done');
+            location.reload();
         })
         .fail(function(){
             console.log('error');
