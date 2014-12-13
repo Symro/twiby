@@ -10,12 +10,12 @@ class FollowsController < ApplicationController
 
     # Check if entry already exists or if the user try to follow itself
     if followed_id === current_user.id
-      redirect_to profile_id_path(:id => followed_id), flash: {error:"You can't follow yourself"}
+      redirect_to profile_id_path(:id => followed_id), flash: {error: "You can't follow yourself"}
     elsif @follow.present?
-      redirect_to profile_id_path(:id => followed_id), flash: {error:'Already followed'}
+      redirect_to profile_id_path(:id => followed_id), flash: {error: 'Already followed'}
     else
       @follow.create
-      redirect_to profile_id_path(:id => followed_id), flash: {error:"You're now following this user :)"}
+      redirect_to profile_id_path(:id => followed_id), flash: {success: "You're now following this user :)"}
     end
 
   end
@@ -29,9 +29,9 @@ class FollowsController < ApplicationController
     @unfollow = Follow.where(follower_id: current_user.id, followed_id: followed_id)
     if @unfollow.present?
       @unfollow.destroy(@unfollow)
-      redirect_to profile_id_path(:id => followed_id), flash: {error:"You're now unfollowing this user :("}
+      redirect_to profile_id_path(:id => followed_id), flash: {success: "You're now unfollowing this user"}
     else
-      redirect_to profile_id_path(:id => followed_id), flash: {error:'Already unfollowed'}
+      redirect_to profile_id_path(:id => followed_id), flash: {error: 'Already unfollowed'}
     end
 
   end

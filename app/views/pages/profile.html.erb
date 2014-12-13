@@ -1,3 +1,11 @@
+<!-- Affichage des flash messages -->
+<div class="flash_message <%= (flash[:error].present?)? 'invalid' : '' %> <%= (flash[:success].present?)? 'valid' : '' %>">
+    <ul>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :li, msg, class: name %>
+        <% end -%>
+    </ul>
+</div>
 
 <header>
 
@@ -179,7 +187,7 @@
 		</div>
 
 
-    	<p class="users_twib"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- 3 465</span></p>
+    	<p class="users_twib"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
     	<ul class="yell_list clear">	
 			<% if @user_tweet.any?  %>
 	  			<% @user_tweet.each do |tweet| %>
@@ -228,7 +236,4 @@
 		</ul>
 	</div>
 </div>
-<!-- Affichage des flash messages -->
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
-<% end -%>
+

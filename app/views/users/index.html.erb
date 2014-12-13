@@ -1,3 +1,13 @@
+<!-- Affichage des flash messages -->
+<div class="flash_message" data-type="<%= (flash[:error].present?)? 'invalid' : '' %><%= (flash[:success].present?)? 'valid' : '' %>">
+    <ul>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :li, msg, class: name %>
+        <% end -%>
+    </ul>
+</div>
+
+
 <header>
 
     <div class="container">
@@ -23,10 +33,6 @@
 
 <div class="yell_index clear">
     <div class="container">
-        <!-- error display from form tweet -->
-        <% flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, class: name %>
-        <% end -%>
 
         <button class="yell_something">Yell something !</button>
 

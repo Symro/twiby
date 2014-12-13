@@ -664,6 +664,41 @@ header{
 
 }
 
+.flash_message{
+	&.valid{
+		height:30px;
+		background:$green;
+		transition-delay:300ms;
+	}
+	&.invalid{
+		height:30px;
+		background:$red;
+		transition-delay:300ms;
+	}
+
+	position:relative;
+	overflow:hidden;
+	width:100%;
+	left:0;
+	top:0;
+	height:0;
+	line-height:30px;
+
+	transition:height 300ms ease;
+
+	ul{
+		max-width:700px;
+		margin:0 auto;
+		text-align:center;
+
+		li{
+			color:#fff;
+		}
+	}
+
+}
+
+
 @media (min-width: 700px) {
 	.container{
 		width: 700px;

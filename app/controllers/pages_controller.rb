@@ -26,7 +26,7 @@ class PagesController < ApplicationController
     end
 
     rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "This profile doesn't exist"
+      flash[:error] = "This profile doesn't exist"
       redirect_to users_index_path
 
   end
