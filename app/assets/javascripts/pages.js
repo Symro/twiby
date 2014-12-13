@@ -29,6 +29,7 @@ $(document).ready(function(){
 		return false;
 	});
 
+  // Modal
 	$('.modal_follower').on('click',function(e){
 		e.preventDefault();
 		$('.modal_box').fadeIn();
@@ -64,7 +65,7 @@ $(document).ready(function(){
 		},300);
 	});
 
-    // edit form
+    // Edit form
     $('.edit_user').on('submit', function(e){
         e.preventDefault();
         var data = $(this).serialize();
@@ -75,6 +76,7 @@ $(document).ready(function(){
         })
         .done(function(){
             console.log('done');
+            location.reload();
         })
         .fail(function(){
             console.log('error');
@@ -84,6 +86,26 @@ $(document).ready(function(){
     $(".yell_time").each(function(i,el){
         $(this).html(moment($(this).html()).fromNow());
     });
+
+    // Count characters
+    $('#tweet_content').keyup(function () {
+        var max = 140;
+        var len = $(this).val().length;
+        if (len >= max) {
+            $('.nb_caract').text(' you have reached the limit');
+        } else {
+            var ch = max - len;
+            $('.nb_caract').text(ch);
+        }
+    });
+
+    // Notice Error
+    var flash_message = $('.flash_message');
+    if( flash_message.data("type") != "" ){
+      flash_message.addClass(flash_message.data("type"));
+    }
+    
+
 
     
 });

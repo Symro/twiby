@@ -1,3 +1,13 @@
+<!-- Affichage des flash messages -->
+<div class="flash_message" data-type="<%= (flash[:error].present?)? 'invalid' : '' %><%= (flash[:success].present?)? 'valid' : '' %>">
+    <ul>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :li, msg, class: name %>
+        <% end -%>
+    </ul>
+</div>
+
+
 <header>
 
     <div class="container">
@@ -23,10 +33,6 @@
 
 <div class="yell_index clear">
     <div class="container">
-        <!-- error display from form tweet -->
-        <% flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, class: name %>
-        <% end -%>
 
         <button class="yell_something">Yell something !</button>
 
@@ -58,10 +64,13 @@
                                 <%= tweet.content %>
                                 <div class="user_actions">
                                     <span class="favorite">
-                                        <a href="#">
-                                            <i class="icon-star"></i>
-                                        </a>
-                                        <p>12</p>
+                                        <% is_favorite = @favorite_list.exists?(tweet_id: tweet.id) ? true : false; %>
+                                        <%= form_tag({:controller => :favorites, :action => (is_favorite ? "destroy" : "create"), :id => tweet.id }, :method => (is_favorite ? :delete : :create), :class => "form_favorite") do %>
+                                          <% button_tag(type: 'submit') do %>
+                                            <i class="icon-star <%= (is_favorite ? "active" : "") %>"></i>
+                                          <% end %>
+                                        <% end %>
+                                        <p><%= tweet.favs.count %></p>
                                     </span>
                                     <% if tweet.user.id == current_user.id %>
                                         <%= form_tag({:controller => :tweets, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_delete") do %>

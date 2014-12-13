@@ -1,3 +1,11 @@
+<!-- Affichage des flash messages -->
+<div class="flash_message <%= (flash[:error].present?)? 'invalid' : '' %> <%= (flash[:success].present?)? 'valid' : '' %>">
+    <ul>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :li, msg, class: name %>
+        <% end -%>
+    </ul>
+</div>
 
 <header>
 
@@ -24,7 +32,7 @@
 	          	<div class="user_logout">
 
 	          		<!-- <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
-                    <% if @user.id == current_user.id %>
+                    <% if current_user and @user.id == current_user.id %>
                         <%= link_to destroy_user_session_path, :method => :delete do %>
     	          		   <i class="icon-off"></i>
                         <% end %>
@@ -34,7 +42,7 @@
 	        			<%= image_tag(@user.avatar.url(:medium)) %>
 	        	</div>
 	        	<div class="user_edit_profile">
-                    <% if @user.id == current_user.id %>
+                    <% if current_user and @user.id == current_user.id %>
                         <%= link_to edit_user_registration_path do %>
     	        	        <i class="icon-edit"></i>
                         <% end %>
@@ -52,7 +60,7 @@
 
 			<div class="to_follow">
 				<!-- Formulaire de follow / unfollow -->
-                <% unless @user.id == current_user.id %>
+                <% unless current_user and @user.id == current_user.id %>
                     <% if @following === true %>
 
                         <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
@@ -135,7 +143,7 @@
 		<div class="edit_profile_box">
 			<!-- Edit form -->
 			
-				<% if @user.id == current_user.id %>
+				<% if current_user and @user.id == current_user.id %>
 				<div class="form-inputs">
 				    <%= render 'devise/registrations/edit' %>
 				    </div>
@@ -179,7 +187,7 @@
 		</div>
 
 
-    	<p class="users_twib"><%= (@user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- 3 465</span></p>
+    	<p class="users_twib"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
     	<ul class="yell_list clear">	
 			<% if @user_tweet.any?  %>
 	  			<% @user_tweet.each do |tweet| %>
@@ -201,8 +209,13 @@
 	   				        <%= tweet.content %>
 	   				        <div class="user_actions">
 	   				        	<span class="favorite">
-	   				        		<a href="#"><i class="icon-star"></i></a>
-	   				        		<p>12</p>
+                                    <% is_favorite = @favorite_list.exists?(tweet_id: tweet.id) ? true : false; %>
+                                    <%= form_tag({:controller => :favorites, :action => (is_favorite ? "destroy" : "create"), :id => tweet.id }, :method => (is_favorite ? :delete : :create), :class => "form_favorite") do %>
+                                      <% button_tag(type: 'submit') do %>
+                                        <i class="icon-star <%= (is_favorite ? "active" : "") %>"></i>
+                                      <% end %>
+                                    <% end %>
+	   				        		<p><%= tweet.favs.count %></p>
 	   				         	</span>
                                 <% if tweet.user.id == current_user.id %>
                                     <%= form_tag({:controller => :tweets, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_delete") do %>
@@ -223,29 +236,4 @@
 		</ul>
 	</div>
 </div>
-
-
-<p>BOUTON : </p>
-
-<!-- Affichage des flash messages -->
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
-<% end -%>
-
-
-
-
-
-LISTE DES FOLLOWING : 
-
-
-
-AVATAR 90x90 : 
-
-<%= image_tag(current_user.avatar.url(:medium)) %>
-
-AVATAR 60x60 : 
-
-<%= image_tag(current_user.avatar.url(:small)) %>
-
 

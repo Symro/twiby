@@ -97,7 +97,13 @@ $red:#ee5043;
 .icon-check:before {content: "\63";}
 .icon-megaphone:before {content: "\6d";}
 
-
+.icon-star.active,
+.icon-star:hover{
+	color:$yellow;
+}
+.icon-star.active:hover{
+	color:$grey_element_yell;
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -444,10 +450,7 @@ header{
 								float:right;
 							}
 						}
-						i:hover{
-							color: $grey_font;
-							cursor: pointer;
-						}
+						.form_favorite,
 						.form_delete{
 							float:right;
 
@@ -459,6 +462,9 @@ header{
 								padding:0;
 								margin:0;
 							}
+						}
+						.form_favorite{
+							float:left;
 						}
 
 					}
@@ -670,7 +676,43 @@ header{
 	.visible{
 		opacity:1;
 	}
+
 }
+
+.flash_message{
+	&.valid{
+		height:30px;
+		background:$green;
+		transition-delay:300ms;
+	}
+	&.invalid{
+		height:30px;
+		background:$red;
+		transition-delay:300ms;
+	}
+
+	position:relative;
+	overflow:hidden;
+	width:100%;
+	left:0;
+	top:0;
+	height:0;
+	line-height:30px;
+
+	transition:height 300ms ease;
+
+	ul{
+		max-width:700px;
+		margin:0 auto;
+		text-align:center;
+
+		li{
+			color:#fff;
+		}
+	}
+
+}
+
 
 @media (min-width: 700px) {
 	.container{
