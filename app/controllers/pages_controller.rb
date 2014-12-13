@@ -2,7 +2,9 @@ class PagesController < ApplicationController
 
   def index
     # Tweet list
-    @tweet_list = Tweet.order('created_at DESC').all
+    # @tweet_list = Tweet.order('created_at DESC').all
+    following_array = current_user.followed.map(&:id).push(current_user.id)
+    @tweet_list = Tweet.where(user_id: following_array)
 
     @new_tweet = Tweet.new
   end
