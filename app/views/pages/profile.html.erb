@@ -201,7 +201,12 @@
 	   				        <%= tweet.content %>
 	   				        <div class="user_actions">
 	   				        	<span class="favorite">
-	   				        		<a href="#"><i class="icon-star"></i></a>
+                                    <% is_favorite = @favorite_list.exists?(tweet_id: tweet.id) ? true : false; %>
+                                    <%= form_tag({:controller => :favorites, :action => (is_favorite ? "destroy" : "create"), :id => tweet.id }, :method => (is_favorite ? :delete : :create), :class => "form_favorite") do %>
+                                      <% button_tag(type: 'submit') do %>
+                                        <i class="icon-star <%= (is_favorite ? "active" : "") %>"></i>
+                                      <% end %>
+                                    <% end %>
 	   				        		<p><%= tweet.favs.count %></p>
 	   				         	</span>
                                 <% if tweet.user.id == current_user.id %>

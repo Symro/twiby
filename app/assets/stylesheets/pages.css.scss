@@ -97,7 +97,13 @@ $red:#ee5043;
 .icon-check:before {content: "\63";}
 .icon-megaphone:before {content: "\6d";}
 
-
+.icon-star.active,
+.icon-star:hover{
+	color:$yellow;
+}
+.icon-star.active:hover{
+	color:$grey_element_yell;
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -428,10 +434,6 @@ header{
 								float:right;
 							}
 						}
-						i:hover{
-							color: $grey_font;
-							cursor: pointer;
-						}
 						.form_favorite,
 						.form_delete{
 							float:right;
@@ -659,6 +661,7 @@ header{
 	.visible{
 		opacity:1;
 	}
+
 }
 
 @media (min-width: 700px) {

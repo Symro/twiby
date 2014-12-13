@@ -58,19 +58,12 @@
                                 <%= tweet.content %>
                                 <div class="user_actions">
                                     <span class="favorite">
-                                        <%# if tweet.user.id != current_user.id %>
-                                            <%= form_tag({:controller => :favorites, :action => 'create', :id => tweet.id }, :method => :create, :class => "form_favorite") do %>
-                                              <% button_tag(type: 'submit') do %>
-                                                <i class="icon-star"></i> Ajouter 
-                                              <% end %>
-                                            <% end %>
-
-                                            <%= form_tag({:controller => :favorites, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_favorite") do %>
-                                              <% button_tag(type: 'submit') do %>
-                                                <i class="icon-star"></i> Supprimer 
-                                              <% end %>
-                                            <% end %>
-                                        <%# end %>
+                                        <% is_favorite = @favorite_list.exists?(tweet_id: tweet.id) ? true : false; %>
+                                        <%= form_tag({:controller => :favorites, :action => (is_favorite ? "destroy" : "create"), :id => tweet.id }, :method => (is_favorite ? :delete : :create), :class => "form_favorite") do %>
+                                          <% button_tag(type: 'submit') do %>
+                                            <i class="icon-star <%= (is_favorite ? "active" : "") %>"></i>
+                                          <% end %>
+                                        <% end %>
                                         <p><%= tweet.favs.count %></p>
                                     </span>
                                     <% if tweet.user.id == current_user.id %>

@@ -8,20 +8,20 @@ class FavoritesController < ApplicationController
     # redirection if success or error
     if Favorite.where(:user_id => current_user.id, :tweet_id => params[:id]).blank?
       favorite.save
-      redirect_to users_index_path, flash: { error: 'Favorited !' }
+      redirect_to :back, flash: { error: 'This tweet is now in your favorite' }
     else
-      redirect_to users_index_path, flash: { error: 'Already in your favorites' }
+      redirect_to :back, flash: { error: 'Already in your favorites' }
     end
 
   end
 
   def destroy
 
-    # Add a tweet in your favorites
+    # Delete a tweet from your favorites
     favorite = Favorite.where(:user_id => current_user.id, :tweet_id => params[:id])
 
     Favorite.destroy(favorite)
-    redirect_to users_index_path, flash: { error: 'Deleted !' }
+    redirect_to :back, flash: { error: 'Deleted !' }
 
   end
 
