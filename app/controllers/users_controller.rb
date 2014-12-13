@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     # Tweet list
     # @tweet_list = Tweet.order('created_at DESC').all
     following_array = current_user.following.map(&:id).push(current_user.id)
-    @tweet_list = Tweet.where(user_id: following_array)
+    @tweet_list = Tweet.where(user_id: following_array).order('created_at DESC')
 
     @new_tweet = Tweet.new
   end
