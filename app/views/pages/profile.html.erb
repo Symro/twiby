@@ -130,6 +130,21 @@
 			<% end -%>
 		</div>
 	</div>
+
+	<div class="modal_edit_profile">
+		<div class="edit_profile_box">
+			<!-- Edit form -->
+			
+				<% if @user.id == current_user.id %>
+				<div class="form-inputs">
+				    <%= render 'devise/registrations/edit' %>
+				    </div>
+				<% end %>
+			
+		</div>
+	</div>
+
+
 </div>
 
 
@@ -189,7 +204,13 @@
 	   				        		<a href="#"><i class="icon-star"></i></a>
 	   				        		<p>12</p>
 	   				         	</span>
-	   				            <a href="#"><i class="icon-trash"></i></a>
+                                <% if tweet.user.id == current_user.id %>
+                                    <%= form_tag({:controller => :tweets, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_delete") do %>
+                                      <% button_tag(type: 'submit') do %>
+                                        <i class="icon-trash"></i>
+                                      <% end %>
+                                    <% end %>
+                                <% end %>
 	   				        </div>
 	   				    </div>
 	  			<% end %>
@@ -227,7 +248,4 @@ AVATAR 60x60 :
 
 <%= image_tag(current_user.avatar.url(:small)) %>
 
-<!-- Edit form -->
-<% if @user.id == current_user.id %>
-    <%= render 'devise/registrations/edit' %>
-<% end %>
+
