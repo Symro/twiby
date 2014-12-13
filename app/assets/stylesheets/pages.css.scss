@@ -564,10 +564,12 @@ header{
 		color: #fff;
 		font-size: 2em;	
 	}
-	.modal_follower,.modal_following{
+	.modal_follower,
+	.modal_following,
+	.modal_edit_profile{
 		position: absolute;
 		z-index: 9999;
-		top: -30%;
+		top: -50%;
 		left: 50%;
 		margin:0 auto;
 		margin-left: -35%;
@@ -586,7 +588,8 @@ header{
 			text-transform: uppercase;
 			margin-bottom:30px;
 		}
-		.followers_box,.following_box{
+		.followers_box,
+		.following_box{
 			display: flex;
 			flex-wrap: wrap;
 			justify-content:space-between;
@@ -603,6 +606,34 @@ header{
 				}
 			}	
 		}
+		.edit_profile_box{
+			input,button,textarea{
+				border: none;
+				width: 100%;
+				padding: 15px;
+				display: block;
+				margin-bottom: 20px;
+				box-sizing: border-box;
+			}
+			label{
+				color: $grey_element_yell;
+
+			}
+			button{
+				text-transform: uppercase;
+				&:hover{
+					cursor: pointer;
+				}
+			}
+			input,textarea{
+				font-family: 'dinmedium';
+				background-color: $grey;
+				color:$grey_font;
+				font-size: 14px;
+				padding-top: 20px;
+			}
+		}
+
 	}
 	.modal_window_visible{
 		top:33%;

@@ -130,6 +130,21 @@
 			<% end -%>
 		</div>
 	</div>
+
+	<div class="modal_edit_profile">
+		<div class="edit_profile_box">
+			<!-- Edit form -->
+			
+				<% if @user.id == current_user.id %>
+				<div class="form-inputs">
+				    <%= render 'devise/registrations/edit' %>
+				    </div>
+				<% end %>
+			
+		</div>
+	</div>
+
+
 </div>
 
 
@@ -227,7 +242,4 @@ AVATAR 60x60 :
 
 <%= image_tag(current_user.avatar.url(:small)) %>
 
-<!-- Edit form -->
-<% if @user.id == current_user.id %>
-    <%= render 'devise/registrations/edit' %>
-<% end %>
+
