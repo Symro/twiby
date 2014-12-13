@@ -17,4 +17,16 @@ class TweetsController < ApplicationController
 
   end
 
+  def destroy
+
+    # Destroy the tweet
+    tweet = Tweet.find(params[:id])
+    if tweet.destroy
+      redirect_to :back, flash: { error: 'deleted' }
+    else
+      redirect_to :back, flash: { error: 'error' }
+    end
+
+  end
+
 end

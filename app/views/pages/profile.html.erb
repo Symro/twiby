@@ -204,7 +204,13 @@
 	   				        		<a href="#"><i class="icon-star"></i></a>
 	   				        		<p>12</p>
 	   				         	</span>
-	   				            <a href="#"><i class="icon-trash"></i></a>
+                                <% if tweet.user.id == current_user.id %>
+                                    <%= form_tag({:controller => :tweets, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_delete") do %>
+                                      <% button_tag(type: 'submit') do %>
+                                        <i class="icon-trash"></i>
+                                      <% end %>
+                                    <% end %>
+                                <% end %>
 	   				        </div>
 	   				    </div>
 	  			<% end %>
