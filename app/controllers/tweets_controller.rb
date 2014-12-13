@@ -22,9 +22,9 @@ class TweetsController < ApplicationController
     # Destroy the tweet
     tweet = Tweet.find(params[:id])
     if tweet.destroy
-      redirect_to users_index_path, flash: { error: 'deleted !' }
+      redirect_to :back, flash: { error: 'deleted' }
     else
-      redirect_to users_index_path, flash: { error: 'error' }
+      redirect_to :back, flash: { error: 'error' }
     end
 
   end
