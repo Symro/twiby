@@ -104,7 +104,42 @@ $(document).ready(function(){
     }
 
     // Toggle tweet list or favs list
+    //$('.container_yell .favorites, .container_yell .tweets').on('click')
+    $('.users_twib.twibs, .users_twib.favorites').on('click', function(e){
 
+        if($(this).attr('class') == 'users_twib twibs' && !$(this).hasClass('active')){
+            $('.container_yell').animate({
+                marginTop: '+=350'
+            }, 1000, function(){
+                //anim complete changing classes
+                $('.users_twib.favorites').removeClass('active');
+                $('.users_twib.twibs').addClass('active');
+
+                $('.container_yell .favorites').removeClass('active');
+                $('.container_yell .twibs').addClass('active');
+            });
+            $('.container_yell').animate({
+                marginTop: '-=350'
+            });
+        }
+
+        if($(this).attr('class') == 'users_twib favorites' && !$(this).hasClass('active')){
+            $('.container_yell').animate({
+                marginTop: '+=350'
+            }, 1000, function(){
+                //anim complete changing classes
+                $('.users_twib.favorites').addClass('active');
+                $('.users_twib.twibs').removeClass('active');
+
+                $('.container_yell .favorites').addClass('active');
+                $('.container_yell .twibs').removeClass('active');
+            });
+            $('.container_yell').animate({
+                marginTop: '-=350'
+            });
+        }
+
+    });
     
 });
 

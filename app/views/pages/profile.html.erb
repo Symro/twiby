@@ -183,14 +183,14 @@
     	    <% end %>
     	</div>
 
-    	<p class="users_twib"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
+    	<p class="users_twib twibs active"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
         <% if current_user and @user.id === current_user.id %>
             <p class="users_twib favorites">My Favorites <span class="users_nb_twib">- <%= current_user.favorites.count %></span></p>
         <% end %>
 
 	    <div class="container_yell">
             <%= render 'pages/favorites' %>
-	    	<ul class="yell_list tweets active clear">
+	    	<ul class="yell_list twibs active clear">
 				<% if @user_tweet.any?  %>
 		  			<% @user_tweet.each do |tweet| %>
 		   			<li>
