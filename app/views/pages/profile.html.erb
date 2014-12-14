@@ -215,7 +215,7 @@
 	                                    <% end %>
 		   				        		<p><%= tweet.favs.count %></p>
 		   				         	</span>
-	                                <% if tweet.user.id == current_user.id %>
+	                                <% if current_user and tweet.user.id == current_user.id %>
 	                                    <%= form_tag({:controller => :tweets, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_delete") do %>
 	                                      <% button_tag(type: 'submit') do %>
 	                                        <i class="icon-trash"></i>
