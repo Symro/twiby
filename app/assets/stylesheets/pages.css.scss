@@ -238,6 +238,9 @@ header{
 .connect{
 	height: 100%;
 	background-color: $green_header;
+	.container{
+		max-width: 300px;
+	}
 	.title{
 		color: $yellow;
 		font-size: 38px;
