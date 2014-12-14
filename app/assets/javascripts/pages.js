@@ -55,7 +55,15 @@ $(document).ready(function(){
 		e.preventDefault();
 		$('.modal_box').fadeIn();
 		setTimeout(function(){
-			$('.modal_edit_profile').fadeIn().addClass('modal_window_visible');
+			$('.modal_edit_profile').fadeIn().addClass('modal_window_edit_visible');
+		},300);
+	});
+
+	$('.icon-off').on('click',function(e){
+		e.preventDefault();
+		$('.modal_box').fadeIn();
+		setTimeout(function(){
+			$('.modal_logout').fadeIn().addClass('modal_window_visible');
 		},300);
 	});
 
@@ -63,8 +71,18 @@ $(document).ready(function(){
 		e.preventDefault();
 		$('.modal_following').removeClass('modal_window_visible');
 		$('.modal_follower').removeClass('modal_window_visible');
-		$('.modal_edit_profile').removeClass('modal_window_visible');
+		$('.modal_edit_profile').removeClass('modal_window_edit_visible');
+		$('.modal_logout').removeClass('modal_window_visible');
 
+		setTimeout(function(){
+			$('.modal_box').fadeOut();
+		},300);
+	});
+
+
+	$('.leave_no').on('click',function(e){
+		e.preventDefault();
+		$('.modal_logout').removeClass('modal_window_visible');
 		setTimeout(function(){
 			$('.modal_box').fadeOut();
 		},300);

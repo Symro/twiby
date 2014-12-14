@@ -31,12 +31,9 @@
         	<div class="header_profil_user">
 	          	<div class="user_logout">
 
-	          		<!-- <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
-                    <% if current_user and @user.id == current_user.id %>
-                        <%= link_to destroy_user_session_path, :method => :delete do %>
+
     	          		   <i class="icon-off"></i>
-                        <% end %>
-                    <% end %>
+
 	          	</div>
 	        	<div class="user_picture">
 	        			<%= image_tag(@user.avatar.url(:medium)) %>
@@ -143,11 +140,33 @@
 		<div class="edit_profile_box">
 			<!-- Edit form -->		
 			<% if current_user and @user.id == current_user.id %>
-			<div class="form-inputs">
-			    <%= render 'devise/registrations/edit' %>
-			    </div>
+				<div class="form-inputs">
+				    <%= render 'devise/registrations/edit' %>
+				</div>
 			<% end %>	
 		</div>
+	</div>
+
+	<div class="modal_logout">
+		<i class="icon-off"></i>
+		<div class="logout_box">
+			<h2>Are you sure <br>you want to log out?</h2>
+			<h2>We'll miss you...</h2>
+		</div>
+		<div class="answer">
+			<button class="leave_no">Off course not !</button>
+
+			<% if current_user and @user.id == current_user.id %>
+			    <%= link_to destroy_user_session_path, :method => :delete do %>
+          		   <button class="leave_yes">Yes sorry...</button>
+                <% end %>
+            <% end %>
+
+		</div>
+
+
+			
+
 	</div>
 </div>
 
