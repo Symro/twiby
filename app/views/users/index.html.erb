@@ -1,3 +1,13 @@
+<!-- Affichage des flash messages -->
+<div class="flash_message" data-type="<%= (flash[:error].present?)? 'invalid' : '' %><%= (flash[:success].present?)? 'valid' : '' %>">
+    <ul>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :li, msg, class: name %>
+        <% end -%>
+    </ul>
+</div>
+
+
 <header>
 
     <div class="container">
@@ -8,12 +18,10 @@
        </div>
         <div class="right_part">
             <% if user_signed_in? %>
-                <!-- logout link -->
-                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-
                 <div class="profile_button">
-                    <i class="icon-perso"></i>
-                    <%= link_to "MY PROFILE", {controller: "pages", action: "profile", id: current_user.id }, class: '' %>
+                    <%= link_to profile_id_path(current_user.id) do %>
+                            <i class="icon-perso"></i>MY PROFILE
+                    <% end %>
                 </div>
 
             <% end %>
@@ -24,13 +32,7 @@
 
 
 <div class="yell_index clear">
-
     <div class="container">
-
-        <!-- error display from form tweet -->
-        <% flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, class: name %>
-        <% end -%>
 
         <button class="yell_something">Yell something !</button>
 
@@ -43,37 +45,54 @@
             <% end %>
         </div>
 
-        <!-- tweet feed of the user -->
-        <ul class="yell_list clear">
-            <% @tweet_list.each do |tweet| %>
-                <li>
-                    <div class="user_picture">
-                          <%= image_tag(tweet.user.avatar.url(:small)) %>
-                    </div>
-                  
-
-                    <div class="user_content">
-                        <div class="head_yell">
-                            <div class="user_name">
-                                <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
+        <div class="container_yell">
+            <!-- tweet feed of the user -->
+            <ul class="yell_list clear">
+                <% if @tweet_list.any?  %>
+                    <% @tweet_list.each do |tweet| %>
+                        <li>
+                            <div class="user_picture">
+                                <%= image_tag(tweet.user.avatar.url(:small)) %>
                             </div>
-                            <p class="yell_time">4sec</p>
-                        </div>
-                        <div class="user_yell">
-                            <%= tweet.content %>
-                            <div class="user_actions">
-                                <a href="#"><i class="icon-star"></i></a>
-                                <p>12</p>
-                                <a href="#"><i class="icon-trash"></i></a>
-
+                            <div class="user_content">
+                                <div class="head_yell">
+                                    <div class="user_name">
+                                        <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
+                                    </div>
+                                    <p class="yell_time"><%= time_ago_in_words(tweet.created_at) %></p>
+                                </div>
+                                <div class="user_yell">
+                                    <%= tweet.content %>
+                                    <div class="user_actions">
+                                        <span class="favorite">
+                                            <% is_favorite = @favorite_list.exists?(tweet_id: tweet.id) ? true : false; %>
+                                            <%= form_tag({:controller => :favorites, :action => (is_favorite ? "destroy" : "create"), :id => tweet.id }, :method => (is_favorite ? :delete : :create), :class => "form_favorite") do %>
+                                              <% button_tag(type: 'submit') do %>
+                                                <i class="icon-star <%= (is_favorite ? "active" : "") %>"></i>
+                                              <% end %>
+                                            <% end %>
+                                            <p><%= tweet.favs.count %></p>
+                                        </span>
+                                        <% if tweet.user.id == current_user.id %>
+                                            <%= form_tag({:controller => :tweets, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_delete") do %>
+                                              <% button_tag(type: 'submit') do %>
+                                                <i class="icon-trash"></i>
+                                              <% end %>
+                                            <% end %>
+                                        <% end %>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </li>
+                    <% end %>
+                <% else %>
+                    <div class="never_tweeted">
+                        <p> There's nothing to show to you yet. </p>
                     </div>
-                </li>
-            <% end %>
-        </ul>
-
+                <% end %>
+            </ul>
+        </div> 
+        <div class="yell_it_btn"></div>       
     </div>
-
 </div>
-
+<div class="point"></div>   

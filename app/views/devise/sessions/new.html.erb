@@ -1,9 +1,19 @@
+<!-- Affichage des flash messages -->
+<div class="flash_message" data-type="<%= (flash[:alert].present?)? 'invalid' : '' %><%= (flash[:notice].present?)? 'valid' : '' %>">
+    <ul>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :li, msg, class: name %>
+        <% end -%>
+    </ul>
+</div>
 
 <div class="connect">
 	<header>
 		<div class="container mgb_20">
 
-			<div class="logo mgb_20"></div>
+			<div class="logo_subscribe mgb_20">
+				<a href="#"></a>
+			</div>
 			<h1 class="mgb_20 title">Twiby</h1>
 			<hr class="mgb_20">
 			<h2>The best place to yell what you want</h2>
@@ -22,7 +32,7 @@
 			    </div>
 
 			    <div class="form-actions">
-			      <%= f.button :submit, "Log in" %>
+			      <%= f.button :submit, "Login" %>
 			    </div>
 			<% end %>
 

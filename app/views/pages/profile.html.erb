@@ -1,3 +1,11 @@
+<!-- Affichage des flash messages -->
+<div class="flash_message <%= (flash[:error].present?)? 'invalid' : '' %> <%= (flash[:success].present?)? 'valid' : '' %>">
+    <ul>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :li, msg, class: name %>
+        <% end -%>
+    </ul>
+</div>
 
 <header>
 
@@ -10,8 +18,10 @@
         <div class="right_part">
             <% if user_signed_in? %>
                 <div class="profile_button">
-                    <i class="icon-perso"></i>
-                    <%= link_to "MY PROFILE", {controller: "pages", action: "profile", id: current_user.id }, class: 'classexp' %>
+                    
+                    <%= link_to profile_id_path(current_user.id) do %>
+							<i class="icon-perso"></i>MY PROFILE
+                    <% end %>
                 </div>
 
             <% end %>
@@ -19,21 +29,17 @@
 
         <div class="profile_user clear ">
         	<div class="header_profil_user">
-
 	          	<div class="user_logout">
 
-	          		<!-- <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
-                    <% if @user.id == current_user.id %>
-                        <%= link_to destroy_user_session_path, :method => :delete do %>
+
     	          		   <i class="icon-off"></i>
-                        <% end %>
-                    <% end %>
+
 	          	</div>
 	        	<div class="user_picture">
 	        			<%= image_tag(@user.avatar.url(:medium)) %>
 	        	</div>
 	        	<div class="user_edit_profile">
-                    <% if @user.id == current_user.id %>
+                    <% if current_user and @user.id == current_user.id %>
                         <%= link_to edit_user_registration_path do %>
     	        	        <i class="icon-edit"></i>
                         <% end %>
@@ -49,43 +55,48 @@
     	        <p><%= @user.description %></p>
     	    </div>
 
-
 			<div class="to_follow">
 				<!-- Formulaire de follow / unfollow -->
-				<% if @following === true %>
+                <% unless current_user and @user.id == current_user.id %>
+                    <% if @following === true %>
 
-				    <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
+                        <%= simple_form_for @follow, url: follow_path ,method: :delete do |f| %>
 
-				      <%= f.error_notification %>
+                          <%= f.error_notification %>
 
-				      <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+                          <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
 
-				      <%= f.button :submit, "Followed", class: 'unfollow' %>
-				    <% end %>
+                          <%= f.button :submit, "Followed", class: 'unfollow icon-off' do %>
+                                <i class="icon-off"></i>
+                          <% end %>
+                        <% end %>
 
-				<% else %>
+                    <% else %>
 
-				    <%= simple_form_for @follow do |f| %>
+                        <%= simple_form_for @follow do |f| %>
 
-				        <%= f.error_notification %>
+                            <%= f.error_notification %>
 
-				        <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
+                            <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
 
-				        <%= f.button :submit, "Follow", class: 'follow' %>
+                            <%= f.button :submit, "Follow", class: 'follow' %>
 
-				    <% end %>
+                        <% end %>
 
-				<% end %>
+                    <% end %>
+                <% end %>
 			</div>
-
-
-
     	    <div class="follow">
     	    	<div class="following">
-    	    		<%= @user_following.count %> Following
+    	    		<a href="#" class="modal_following">
+    	    			<%= @user_following.count %> Following
+    	    		</a>
     	    	</div>
+
     	    	<div class="follower">
-    	    		<%= @user_followers.count %> Followers
+    	    		<a href="#" class="modal_follower">    	    		
+    	    			<%= @user_followers.count %> Followers
+    	    		</a>
     	    	</div>
     	    </div>
         </div>
@@ -93,119 +104,141 @@
 </header>
 
 
-<!-- 
-<h2>User profile</h2>
-<br>
-<p>Username :</p>
-<%# current_user.username %>
 
-<br><br>
+<div class="modal_box">
+	<p class="close_modal">X</p>
 
-<p>Profil description :</p>
-<%# current_user.description %>
+	<div class="modal_follower">
+		<h4>Followers</h4>
+		<div class="followers_box">
+			<% @user_followers.each do |follower| -%>
+			    <figure>
+			      <%= link_to profile_id_path(follower.id), :class => "" do %>
+			            <img src="<%= follower.avatar.url(:small) %>" alt="<%= follower.username %>" />
+			            <figcaption><%= follower.username %></figcaption>
+			      <% end %>
+			    </figure>
+			<% end -%>
+		</div>
+	</div>
 
-<br><br>
+	<div class="modal_following">
+		<h4>Following</h4>
+		<div class="following_box">
+			<% @user_following.each do |following| -%>
+			    <figure>
+			      <%= link_to profile_id_path(following.id), :class => "" do %>
+			            <img src="<%= following.avatar.url(:small) %>" alt="<%= following.username %>" />
+			            <figcaption><%= following.username %></figcaption>
+			      <% end %>
+			    </figure>
+			<% end -%>
+		</div>
+	</div>
 
-<p>Tweets :</p> -->
+	<div class="modal_edit_profile">
+		<div class="edit_profile_box">
+			<!-- Edit form -->		
+			<% if current_user and @user.id == current_user.id %>
+				<div class="form-inputs">
+				    <%= render 'devise/registrations/edit' %>
+				</div>
+			<% end %>	
+		</div>
+	</div>
 
-<div class="yell_index clear">
-    <div class="container">
+	<div class="modal_logout">
+		<i class="icon-off"></i>
+		<div class="logout_box">
+			<h2>Are you sure <br>you want to log out?</h2>
+			<h2>We'll miss you...</h2>
+		</div>
+		<div class="answer">
+			<button class="leave_no">Off course not !</button>
 
-		<button class="yell_something">Yell something !</button>
+			<% if current_user and @user.id == current_user.id %>
+			    <%= link_to destroy_user_session_path, :method => :delete do %>
+          		   <button class="leave_yes">Yes sorry...</button>
+                <% end %>
+            <% end %>
 
-		<!-- form to tweet -->
-		<div class="yell_form mgb_30">
-		    <%= simple_form_for @new_tweet, :url => "/tweets", :method => :post do |f| %>
-		        <%= f.text_area :content, placeholder: 'Write something' %>
-		        <p class="nb_caract">140</p>
-		        <%= f.button :submit %>
-		    <% end %>
 		</div>
 
 
-    	<p class="users_twib"><%= (@user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- 3 465</span></p>
-    	<ul class="yell_list clear">	
-			<% if @user_tweet.any?  %>
-	  			<% @user_tweet.each do |tweet| %>
-	   			<li>
-	   				<div class="user_picture">
-	   				    
-	   				    	<%= image_tag(tweet.user.avatar.url(:small)) %>
+			
 
-	   				</div>
-
-	   				<div class="user_content">
-	   				    <div class="head_yell">
-	   				        <div class="user_name">
-	   				            <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
-	   				        </div>
-	   				        <p class="yell_time">
-	   				        	<%= tweet.created_at %>
-	   				        </p>
-	   				    </div>
-	   				    <div class="user_yell">
-	   				        <%= tweet.content %>
-	   				        <div class="user_actions">
-	   				            <a href="#"><i class="icon-star"></i></a>
-	   				            <p>12</p>
-	   				            <a href="#"><i class="icon-trash"></i></a>
-	   				        </div>
-	   				    </div>
-	  			<% end %>
-                <script>
-                    $(".yell_time").each(function(i,el){
-                        $(this).html(moment($(this).html()).fromNow());
-                    });
-                </script>
-
-			<% else %>
-	  			Never Tweeted :(
-				</li>
-			<% end %>
-		</ul>
 	</div>
 </div>
 
+<div class="yell_index clear">
+    <div class="container ">
+    	<button class="yell_something">Yell something !</button>
 
-<p>BOUTON : </p>
+    	<!-- form to tweet -->
+    	<div class="yell_form mgb_30">
+    	    <%= simple_form_for @new_tweet, :url => "/tweets", :method => :post do |f| %>
+    	        <%= f.text_area :content, placeholder: 'Write something' %>
+    	        <p class="nb_caract">140</p>
+    	        <%= f.button :submit %>
+    	    <% end %>
+    	</div>
 
-<!-- Affichage des flash messages -->
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
-<% end -%>
+    	<p class="users_twib twibs active"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
+        <% if current_user and @user.id === current_user.id %>
+            <p class="users_twib favorites">My Favorites <span class="users_nb_twib">- <%= current_user.favorites.count %></span></p>
+        <% end %>
 
+	    <div class="container_yell">
+            <%= render 'pages/favorites' %>
+	    	<ul class="yell_list twibs active clear">
+				<% if @user_tweet.any?  %>
+		  			<% @user_tweet.each do |tweet| %>
+		   			<li>
+		   				<div class="user_picture">
+		   				   	<%= image_tag(tweet.user.avatar.url(:small)) %>
+		   				</div>
 
-
-LISTE DES FOLLOWERS : 
-
-<% @user_followers.each do |follower| -%>
-
-    <figure>
-      <%= link_to profile_id_path(follower.id), :class => "" do %>
-            <img src="<%= follower.avatar.url(:small) %>" alt="<%= follower.username %>" />
-            <figcaption><%= follower.username %></figcaption>
-      <% end %>
-    </figure>
-
-<% end -%>
-
-LISTE DES FOLLOWING : 
-
-<% @user_following.each do |following| -%>
-
-    <figure>
-      <%= link_to profile_id_path(following.id), :class => "" do %>
-            <img src="<%= following.avatar.url(:small) %>" alt="<%= following.username %>" />
-            <figcaption><%= following.username %></figcaption>
-      <% end %>
-    </figure>
-
-<% end -%>
-
-AVATAR 90x90 : 
-
-<%= image_tag(current_user.avatar.url(:medium)) %>
-
-AVATAR 60x60 : 
-
-<%= image_tag(current_user.avatar.url(:small)) %>
+		   				<div class="user_content">
+		   				    <div class="head_yell">
+		   				        <div class="user_name">
+		   				            <%= link_to tweet.user.username, controller: "pages", action: "profile", id: tweet.user.id %>
+		   				        </div>
+		   				        <p class="yell_time">
+		   				        	<%= time_ago_in_words(tweet.created_at) %>
+		   				        </p>
+		   				    </div>
+		   				    <div class="user_yell">
+		   				        <%= tweet.content %>
+		   				        <div class="user_actions">
+		   				        	<span class="favorite">
+	                                    <% is_favorite = @favorite_list.exists?(tweet_id: tweet.id) ? true : false; %>
+	                                    <%= form_tag({:controller => :favorites, :action => (is_favorite ? "destroy" : "create"), :id => tweet.id }, :method => (is_favorite ? :delete : :create), :class => "form_favorite") do %>
+	                                      <% button_tag(type: 'submit') do %>
+	                                        <i class="icon-star <%= (is_favorite ? "active" : "") %>"></i>
+	                                      <% end %>
+	                                    <% end %>
+		   				        		<p><%= tweet.favs.count %></p>
+		   				         	</span>
+	                                <% if current_user and tweet.user.id == current_user.id %>
+	                                    <%= form_tag({:controller => :tweets, :action => 'destroy', :id => tweet.id }, :method => :delete, :class => "form_delete") do %>
+	                                      <% button_tag(type: 'submit') do %>
+	                                        <i class="icon-trash"></i>
+	                                      <% end %>
+	                                    <% end %>
+	                                <% end %>
+		   				        </div>
+		   				    </div>
+		   				</div>
+		   			</li>
+		  		<% end %>
+				<% else %>
+		  			<div class="never_tweeted">
+		  			    <p> There's nothing to show to you yet. </p>
+		  			</div>				
+				<% end %>
+				<div class="yell_it_btn"></div>
+			</ul>
+		</div>
+	</div>
+</div>	
+<div class="point"></div>

@@ -6,15 +6,19 @@ Rails.application.routes.draw do
   # CRUD for follows
   resources :follows
 
+  # CRUD for favorites
+  resources :favorites
+
   get 'users/index'
-  get '/' => "users#index"
+  get '/' => 'users#index'
   
-  get '/profile' => "pages#index"
-  get '/profile/:id' => "pages#profile", as: "profile_id"
+  get '/profile' => 'pages#index'
+  get '/profile/:id' => 'pages#profile', as: 'profile_id'
 
 
   devise_for :users, controllers: {
-       sessions: 'users/sessions'
+       sessions: 'users/sessions',
+       registrations: 'users/registrations'
   }
 
 end
