@@ -2,20 +2,23 @@
 <div class="edit_profile_container">
   <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
 
-  <%= simple_form_for(current_user, url: user_registration_path, html: { method: :put }) do |f| %>
+  <%= simple_form_for(resource, url: user_registration_path, html: { method: :patch }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
 
-      <h2>EMAIL</h2>
+      <h2>EMAIL*</h2>
       <%= f.input :email, required: true, autofocus: true, placeholder: 'Email' %>
+
+      <h2>USERNAME</h2>
+      <%= f.input :username, placeholder: 'Username' %>
 
       <h2>DESCRIPTION</h2>
       <%= f.text_area :description, autocomplete: 'off', hint: 'description here', required: false%>
 
       <h2>AVATAR</h2>
       <%= f.label :avatar, class: ''  %>
-      <%= f.file_field :avatar %>
+      <%= f.file_field :avatar, required: false %>
     </div>
 </div>
 <div class="grey">
@@ -24,11 +27,11 @@
 
         <h2 class="title">Change your password</h2>
 
-        <h2>Type the actual password</h2>
-        <%= f.input :password, autocomplete: 'off', hint: "leave it blank if you don't want to change it", required: false, placeholder: 'Description' %>
-        <h2>Type the new password</h2>
+        <h2>New password</h2>
+        <%= f.input :password, autocomplete: 'off', hint: "leave it blank if you don't want to change it", required: false %>
+        <h2>New password confirmation</h2>
         <%= f.input :password_confirmation, required: false %>
-        <h2>Retype it</h2>
+        <h2>Current password to save changes*</h2>
         <%= f.input :current_password, hint: 'we need your current password to confirm your changes', required: true %>
       </div>
     </div>  

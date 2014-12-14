@@ -88,24 +88,6 @@ $(document).ready(function(){
 		},300);
 	});
 
-    // Edit form
-    $('.edit_user').on('submit', function(e){
-        e.preventDefault();
-        var data = $(this).serialize();
-        $.ajax({
-            type: 'POST',
-            url: '/users',
-            data: data
-        })
-        .done(function(){
-            console.log('done');
-            location.reload();
-        })
-        .fail(function(){
-            console.log('error');
-        })
-    });
-
     // Count characters
     $('#tweet_content').keyup(function () {
         var max = 140;
