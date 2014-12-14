@@ -3,6 +3,10 @@
 
 $(document).ready(function(){
 
+	var window_heigh = $(document).height();
+
+	$('.connect').height(window_heigh);
+
 
     $('.yell_something').on('click',function(){
         $(this).fadeOut();
@@ -11,6 +15,7 @@ $(document).ready(function(){
         },500);
     });
 	
+	// Affichage bouton yell it  dus
 	$(window).scroll(function(){
 		if ($(this).scrollTop() > 100) {
 			$('.yell_it_btn').fadeIn();
@@ -92,10 +97,10 @@ $(document).ready(function(){
         var max = 140;
         var len = $(this).val().length;
         if (len >= max) {
-            $('.nb_caract').text(' you have reached the limit');
+            $('.nb_caract').text(' you have reached the limit').addClass('limit_reached');
         } else {
             var ch = max - len;
-            $('.nb_caract').text(ch);
+            $('.nb_caract').text(ch).removeClass('limit_reached');;
         }
     });
 

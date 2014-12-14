@@ -10,6 +10,7 @@ $grey_font: #8c8c8c;
 $grey_element_yell: #dfdfdf;
 $green:#23ee83;
 $green_dark:#54b4b4;
+$green_header:#60d4d4;
 $yellow:#fcfa26;
 $yellow_dark:#ecea03;
 $red:#ee5043;
@@ -156,14 +157,17 @@ table {
 
 
 body {
-	background-color: #60d4d4;
+	background-color: $grey;
 	width: 100%;
 }
-
+input,textarea{
+	&:focus{
+		outline: none;
+	}
+}
 hr{
 	width: 15px;
 	border:1px solid #90e1e1;
-
 }
 
 .mgb_15{
@@ -196,7 +200,7 @@ hr{
 header{
 	color:#fff;
 	min-height: 150px;
-	// box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+	background-color: #60d4d4;
 	h1, h2 {
 		text-align: center;
 		text-transform: uppercase;
@@ -211,7 +215,7 @@ header{
 
 .logo{
 	a{
-		background-image: url(/logo-big.png);
+		background-image: url(/logo-small.png);
 		background-repeat: no-repeat;
 		background-size: 100%;
 		margin: 0 auto;
@@ -233,6 +237,7 @@ header{
 }
 .connect{
 	height: 100%;
+	background-color: $green_header;
 	.title{
 		color: $yellow;
 		font-size: 38px;
@@ -251,12 +256,14 @@ header{
 	}
 	.form-actions{
 		.btn{
+			height: 55px;
 			padding: 15px;
 			border-radius: 0;
 			font-family: 'dinmedium';
 			text-transform: uppercase;
 			font-size: 16px;
 			background-color: $yellow;
+			box-shadow: 0 50px 20px -20px #eae82d inset;
 			border: none;
 			border-bottom: 4px solid #dcda2b;
 			color: $red;
@@ -264,6 +271,7 @@ header{
 			&:hover{
 				cursor: pointer;
 				background-color: darken($yellow, 10%);
+				box-shadow: 0 50px 20px -20px darken(#eae82d, 10%) inset; 
 				border-bottom: 4px solid darken(#dcda2b, 10%);
 				box-shadow: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 				@include transition(all .5s);
@@ -277,6 +285,13 @@ header{
 		color: #afafaf;
 		text-decoration: none;
 	}
+	button,input{
+		max-width: 300px;
+	}
+}
+.container_yell{
+	background-color:#fff;
+	padding:20px;
 }
 .container{
 	//width: 90%;
@@ -296,11 +311,17 @@ header{
 		box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 		display: none;
 	}
+	.never_tweeted{
+		background-color: $grey;
+		text-align:center;
+		text-transform: uppercase;
+		color: $grey_font;
+		line-height: 30px;
+	}
 	input,button{
 		border: none;
 		width: 100%;
 		padding: 15px;
-		max-width: 300px;
 		margin: 0 auto;
 		display: block;
 		margin-bottom: 20px;
@@ -315,9 +336,8 @@ header{
 	input{
 		font-family: 'dinmedium';
 		font-size: 14px;
-		&:focus{
-			outline: none;
-		}
+		height: 50px;
+		color:$grey_font;
 	}
 	a{
 		display: inherit;
@@ -342,6 +362,19 @@ header{
 			margin-right: 10px;
 		}
 	}
+	.signup_button{
+		background-color: #54b4b4;
+		color: #fff;
+		padding: 13px 20px;
+		width: 140px;
+		font-size: 14px;
+		margin: auto;
+		@include transition(all .5s);
+		&:hover{
+			background-color: darken(#54B4B4,10%);
+			@include transition(all .5s);
+		}
+	}
 	.yell_form{
 		padding:20px;
 		background-color: #FFF;
@@ -357,7 +390,7 @@ header{
 			padding:10px;
 			box-sizing: border-box;
 			background-color: #f6f4f4;
-			color: #c5c4c4;
+			color: darken($grey_font,10%);
 			border:none;
 			resize: none;
 		}
@@ -368,11 +401,11 @@ header{
 			background-color: #23ee83;
 			color: #fff;
 			border:none;
-			border-bottom:3px solid #21dc79;
+			border-bottom:5px solid #21dc79;
 			text-transform: uppercase;
 			&:hover{
 				background-color: darken($green, 10%);
-				border-bottom: 3px solid darken(#21dc79,10%);
+				border-bottom: 5px solid darken(#21dc79,10%);
 				cursor: pointer;
 			}
 		}
@@ -380,20 +413,31 @@ header{
 			margin-bottom: 15px;
 			text-align:right;
 			color: $grey_element_yell;
+			@include transition(all .5s);
+		}
+		.limit_reached{
+			color:$red;
+			@include transition(all .5s);
 		}
 	}
 	.yell_list{
-		background-color: #FFF;
-		padding:20px;
 		ul{
+			background-color: #FFF;
 			padding:20px;
 		}
 		li{
 			display: flex;
-			display: -webkit-flex;
 			margin-bottom:30px;
 			padding-bottom: 30px; 
 			border-bottom:1px solid $grey;
+			&:first-child{
+				margin-top: 20px;
+			}
+			&:last-child{
+				padding-bottom:0px !important;
+				margin-bottom: 0px !important;
+				border-bottom: 0px !important;
+			}
 			.user_picture{
 				width: 70px;
 				img{
@@ -466,7 +510,6 @@ header{
 						.form_favorite{
 							float:left;
 						}
-
 					}
 				}
 			}
@@ -527,7 +570,7 @@ header{
 				color: #fff;
 				padding: 15px 40px;
 				background-color: $yellow;
-				border-bottom:3px solid darken($yellow,10%);
+				border-bottom:5px solid darken($yellow,10%);
 			}
 			.unfollow{
 				background-color: #60d4d4;
@@ -537,31 +580,39 @@ header{
 		.follow{
 			display:flex;
 			margin-bottom: 50px;
-			.following, .follower{
+			.following, 
+			.follower{
 				flex:1;
-				text-align: center;
 				text-transform: uppercase;
 			}
 			.follower{
+				text-align: left;
+				padding-left:20px;
 				border-left: 1px solid #90e1e1;
+			}
+			.following{
+				text-align: right;
+				padding-right:20px;
+
 			}
 		}
 	}
 
 	.yell_something{
+		height: 85px;
 		padding:20px;
-		margin-top: -50px;
+		margin-top: -70px;
 		margin-bottom: 40px;
 		font-family: 'dinmedium';
 		color: $red;
 		background-color: $yellow;
-		border-bottom:3px solid darken($yellow, 10%);
-		font-size: 14px;
+		border-bottom:5px solid darken($yellow, 10%);
+		font-size: 18px;
 		letter-spacing: 2px;
 		@include transition(all .5s);
 		&:hover{
 			background-color: $yellow_dark;
-			border-bottom:3px solid darken($yellow_dark, 10%);
+			border-bottom:5px solid darken($yellow_dark, 10%);
 			// transform: rotateX(85deg);
 			@include transition(all .5s);
 		}
@@ -667,7 +718,6 @@ header{
 				padding-top: 20px;
 			}
 		}
-
 	}
 	.modal_window_visible{
 		top:33%;
@@ -676,9 +726,21 @@ header{
 	.visible{
 		opacity:1;
 	}
-
 }
-
+.point{
+	width:4px;
+	height: 4px;
+	margin: 0 auto;
+	margin-bottom:30px;
+	border-radius: 50px;
+	background-color: $grey_font;
+}
+.error_notification,
+.error{
+	margin-bottom: 10px;
+	color: $red;
+	text-transform: inherit;
+}
 .flash_message{
 	&.valid{
 		height:30px;
@@ -690,7 +752,6 @@ header{
 		background:$red;
 		transition-delay:300ms;
 	}
-
 	position:relative;
 	overflow:hidden;
 	width:100%;
@@ -700,7 +761,6 @@ header{
 	line-height:30px;
 
 	transition:height 300ms ease;
-
 	ul{
 		max-width:700px;
 		margin:0 auto;
@@ -710,7 +770,6 @@ header{
 			color:#fff;
 		}
 	}
-
 }
 
 

@@ -1,25 +1,36 @@
 <div class="connect">
-	<header>
-		<div class="container mgb_50"></div>
 
+	<header>
+		<div class="container mgb_20">
+
+			<div class="logo_subscribe mgb_20">
+				<a href="/"></a>
+			</div>
+			<h1 class="mgb_20 title">Twiby</h1>
+			<hr class="mgb_20">
 		<h2>Forgot your password?</h2>
+		</div>
+		
 
 	</header>
 
-	<div class="container">
+	<div class="sign_in">
 
-		<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-		  <%= f.error_notification %>
+		<div class="container">
 
-		  <div class="form-inputs">
-		    <%= f.input :email, required: true, autofocus: true, placeholder:"EMAIL" %>
-		  </div>
+			<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+			  <%= f.error_notification %>
 
-		  <div class="form-actions">
-		    <%= f.button :submit, "Send me reset password instructions" %>
-		  </div>
-		<% end %>
+			  <div class="form-inputs">
+			    <%= f.input :email, required: true, autofocus: true, placeholder:"EMAIL" %>
+			  </div>
 
-		<%= render "devise/shared/links" %>
+			  <div class="form-actions">
+			    <%= f.button :submit, "Send me reset password instructions" %>
+			  </div>
+			<% end %>
+
+			<%= render "devise/shared/links" %>
+		</div>
 	</div>
 </div>
