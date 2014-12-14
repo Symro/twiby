@@ -916,3 +916,22 @@ header{
 	}
 }
 
+
+
+// Ajouts Sylvain
+
+.yell_index .users_twib{
+  cursor: pointer;
+}
+.container_yell .favorites{
+  display: none;
+  &.active{
+    display: block;
+  }
+}
+.container_yell .tweets{
+  display: none;
+  &.active{
+    display: block;
+  }
+}

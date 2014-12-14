@@ -1,6 +1,3 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-
 $(document).ready(function(){
 
 	var window_heigh = $(document).height();
@@ -34,7 +31,7 @@ $(document).ready(function(){
 		return false;
 	});
 
-  // Modal
+    // Modal
 	$('.modal_follower').on('click',function(e){
 		//e.preventDefault();
 		$('.modal_box').fadeIn();
@@ -105,8 +102,8 @@ $(document).ready(function(){
     if( flash_message.data("type") != "" ){
       flash_message.addClass(flash_message.data("type"));
     }
-    
 
+    // Toggle tweet list or favs list
 
     
 });
