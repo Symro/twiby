@@ -1,3 +1,11 @@
+<!-- Affichage des flash messages -->
+<div class="flash_message" data-type="<%= (flash[:alert].present?)? 'invalid' : '' %><%= (flash[:notice].present?)? 'valid' : '' %>">
+    <ul>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :li, msg, class: name %>
+        <% end -%>
+    </ul>
+</div>
 
 <div class="connect">
 	<header>

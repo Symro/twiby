@@ -303,16 +303,24 @@ header{
 	position: relative;
 	.yell_it_btn{
 		position: fixed;
-		background-image: url(/logo-big.png);
-		background-size: 100%;
-		background-repeat: no-repeat;
 		border-radius: 50px;
-		width: 50px;
-		height: 50px;
+		width: 43px;
+		height: 43px;
 		bottom: 50px;
-		right: 0px;	
+		right: 20px;	
 		box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 		display: none;
+
+		&:after{
+			content:"";
+			position:absolute;
+			left:0; top:0;
+			background-image: url(/logo-big.png);
+			background-size: 100%;
+			background-repeat: no-repeat;
+			width: 50px;
+			height: 50px;
+		}
 	}
 	.never_tweeted{
 		background-color: $grey;

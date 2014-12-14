@@ -36,7 +36,7 @@ $(document).ready(function(){
 
   // Modal
 	$('.modal_follower').on('click',function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		$('.modal_box').fadeIn();
 		setTimeout(function(){
 			$('.modal_follower').fadeIn().addClass('modal_window_visible');
@@ -44,7 +44,7 @@ $(document).ready(function(){
 	});
 
 	$('.modal_following').on('click',function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		$('.modal_box').fadeIn();
 		setTimeout(function(){
 			$('.modal_following').fadeIn().addClass('modal_window_visible');
