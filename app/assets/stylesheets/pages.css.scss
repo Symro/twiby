@@ -195,6 +195,35 @@ figure{
 }
 .right_part{
 	float: right;
+
+	.search_bar{
+		position:relative;
+		float:left;
+		margin-right:20px;
+
+		input[type="text"]{
+			padding-right:25px;
+			height:46px;
+		}
+
+		.search_button{
+			position:absolute;
+			right:10px;
+			top:15px;
+			background:none;
+			padding:0; margin:0;
+			width:18px; height:18px;
+			background:#fff;
+		}
+
+		svg{
+			fill:$green_dark;
+		}
+		svg:hover{
+			fill:darken($green_dark,10%);
+		}
+
+	}
 	
 }
 
@@ -496,6 +525,14 @@ header{
 					.user_actions{
 						margin-top: 15px;
 						.favorite{
+							float:left;
+							display:block;
+							line-height:18px;
+
+							p{
+								margin-left:3px;
+							}
+
 							&:hover{								
 								color: $grey_font;
 							}								
@@ -958,8 +995,14 @@ header{
 
 
 @media (min-width: 700px) {
-	.container{
+	.container,{
 		width: 700px;
+	}
+	.modal_edit_profile{
+		box-sizing:border-box;
+		width: 700px !important;
+		left:50% !important;
+		margin-left:-350px !important;
 	}
 	.edit_profile_container{
 		margin:0 auto;
