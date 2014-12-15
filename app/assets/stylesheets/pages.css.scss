@@ -170,6 +170,11 @@ hr{
 	border:1px solid #90e1e1;
 }
 
+figure{
+	img{
+		border-radius:50px;
+	}
+}
 .mgb_15{
 	margin-bottom:15px;
 }
@@ -858,6 +863,11 @@ header{
 	}
 	.visible{
 		opacity:1;
+	}
+}
+.close_modal{
+	&:hover{
+		cursor: pointer;
 	}
 }
 .point{
