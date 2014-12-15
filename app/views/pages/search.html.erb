@@ -1,0 +1,57 @@
+<header>
+
+  <div class="container">
+    <div class="left_part">
+      <div class="logo mgb_20">
+        <%= link_to "", users_index_path %>
+      </div>
+    </div>
+    <div class="right_part">
+      <% if user_signed_in? %>
+          <div class="search_bar">
+            <%= form_tag(search_users_path, :method => 'get', id: 'search_form') do %>
+                <%= text_field_tag :query, params[:query], placeholder: 'Search for users' %>
+                <%= submit_tag 'search',:style => 'display: none;' %>
+            <% end %>
+          </div>
+          <div class="profile_button">
+            <%= link_to profile_id_path(current_user.id) do %>
+                <i class="icon-perso"></i>MY PROFILE
+            <% end %>
+          </div>
+
+      <% end %>
+    </div>
+  </div>
+
+</header>
+<div class="yell_index clear">
+    <div class="container">
+    <% if @users.any? %>
+        <div class="container_yell">
+            <ul class="yell_list clear">
+                <% @users.each do |user| %>
+                    <li>
+                        <div class="user_picture">
+                            <%= image_tag(user.avatar.url(:small)) %>
+                        </div>
+                        <div class="user_content">
+                            <div class="head_yell">
+                                <div class="user_name">
+                                    <%= link_to user.username, controller: 'pages', action: 'profile', id: user.id %>
+                                </div>
+                                <p class="yell_time">Subscribed <%= time_ago_in_words(user.created_at) %></p>
+                            </div>
+                            <div class="user_yell">
+                                <%= user.description %>
+                            </div>
+                        </div>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% else %>
+        <p>No profiles found. Try again ;)</p>
+    <% end %>
+    </div>
+</div>

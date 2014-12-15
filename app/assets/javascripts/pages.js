@@ -140,6 +140,9 @@ $(document).ready(function(){
         }
 
     });
+
+    // AJAX to search users
+    //$('.user_search').
     
 });
 
