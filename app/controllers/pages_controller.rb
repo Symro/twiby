@@ -31,5 +31,11 @@ class PagesController < ApplicationController
 
   end
 
+  def search
+    if params[:query]
+      @users = User.search(params[:query]).order('username DESC')
+    end
+  end
+
 
 end

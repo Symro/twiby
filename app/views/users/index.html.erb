@@ -18,12 +18,17 @@
        </div>
         <div class="right_part">
             <% if user_signed_in? %>
+                <div class="search_bar">
+                    <%= form_tag(search_users_path, :method => 'get', id: 'search_form') do %>
+                        <%= text_field_tag :query, params[:query], placeholder: 'Search for users' %>
+                        <%= submit_tag 'search',:style => 'display: none;' %>
+                    <% end %>
+                </div>
                 <div class="profile_button">
                     <%= link_to profile_id_path(current_user.id) do %>
                             <i class="icon-perso"></i>MY PROFILE
                     <% end %>
                 </div>
-
             <% end %>
         </div>
     </div>
