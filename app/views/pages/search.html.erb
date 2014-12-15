@@ -11,7 +11,15 @@
           <div class="search_bar">
             <%= form_tag(search_users_path, :method => 'get', id: 'search_form') do %>
                 <%= text_field_tag :query, params[:query], placeholder: 'Search for users' %>
-                <%= submit_tag 'search',:style => 'display: none;' %>
+                <%= button_tag(type:"submit", class:"search_button") do %>
+                    <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             width="15px" height="15px" viewBox="0 0 150 150" enable-background="new 0 0 150 150" xml:space="preserve">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M85.434,2.004c-34.581,0-62.611,27.74-62.611,61.973
+                            c0,13.747,4.527,26.44,12.176,36.717L1.965,133.725l14.271,14.271l33.275-33.272c10.17,7.065,22.551,11.227,35.922,11.227
+                            c34.571,0,62.602-27.741,62.602-61.974S120.005,2.004,85.434,2.004z M85.434,105.767c-23.323,0-42.219-18.705-42.219-41.79
+                            c0-23.084,18.896-41.796,42.219-41.796c23.313,0,42.22,18.712,42.22,41.796C127.653,87.062,108.747,105.767,85.434,105.767z"/>
+                    </svg>
+                <% end %>
             <% end %>
           </div>
           <div class="profile_button">

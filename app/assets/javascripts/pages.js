@@ -97,6 +97,16 @@ $(document).ready(function(){
         }
     });
 
+    //Follow hover
+    $('.unfollow').mouseover(function () {
+    	$(this).val("Unfollow").css("color","#ee5043");
+    	$('.icon-check').fadeOut(100);
+    });
+    $('.unfollow').mouseleave(function () {
+    	$(this).val("Followed").css("color","#23ee83");
+    	$('.icon-check').fadeIn(100);
+    });
+
     // Notice Error
     var flash_message = $('.flash_message');
     if( flash_message.data("type") != "" ){

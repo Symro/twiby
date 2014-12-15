@@ -92,11 +92,13 @@ $red:#ee5043;
 
 .icon-trash:before {content: "\74";}
 .icon-star:before {content: "\73";}
+.icon-search:before {content: "\72";}
 .icon-perso:before {content: "\70";}
 .icon-off:before {content: "\6f";}
-.icon-edit:before {content: "\65";}
-.icon-check:before {content: "\63";}
 .icon-megaphone:before {content: "\6d";}
+.icon-edit:before {content: "\65";}
+.icon-cross:before {content: "\63";}
+.icon-check:before {content: "\68";}
 
 .icon-star.active,
 .icon-star:hover{
@@ -195,6 +197,35 @@ figure{
 }
 .right_part{
 	float: right;
+
+	.search_bar{
+		position:relative;
+		float:left;
+		margin-right:20px;
+
+		input[type="text"]{
+			padding-right:25px;
+			height:46px;
+		}
+
+		.search_button{
+			position:absolute;
+			right:10px;
+			top:15px;
+			background:none;
+			padding:0; margin:0;
+			width:18px; height:18px;
+			background:#fff;
+		}
+
+		svg{
+			fill:$green_dark;
+		}
+		svg:hover{
+			fill:darken($green_dark,10%);
+		}
+
+	}
 	
 }
 
@@ -270,27 +301,30 @@ header{
 			font-family: 'dinmedium';
 			text-transform: uppercase;
 			font-size: 16px;
-			background-color: $yellow;
-			box-shadow: 0 50px 20px -20px #eae82d inset;
+			background-color: #eae82d;
+			box-shadow: 0 50px 20px -20px $yellow inset;
 			border: none;
 			border-bottom: 4px solid #dcda2b;
 			color: $red;
 			@include transition(all .5s);
 			&:hover{
 				cursor: pointer;
-				background-color: darken($yellow, 10%);
-				box-shadow: 0 50px 20px -20px darken(#eae82d, 10%) inset; 
+				background-color: darken(#eae82d, 10%);
+				box-shadow: 0 60px 20px -20px darken($yellow, 10%) inset; 
 				border-bottom: 4px solid darken(#dcda2b, 10%);
 				box-shadow: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 				@include transition(all .5s);
 			}
+		}
+		.reset_password{
+			font-size: 13px;
 		}
 	}
 }
 .sign_in{
 	a{
 		text-align: center;
-		color: #afafaf;
+		color: $green_dark;
 		text-decoration: none;
 	}
 	button,input{
@@ -312,15 +346,17 @@ header{
 		color:$red;
 		font-size: 32px;
 		background-color:$yellow_dark;
-		width: 43px;
-		height: 43px;
-		bottom: 50px;
-		right: 20px;	
+		height: 60px;
+		width: 60px;
+		right: 52px;
+		bottom: 50px;	
 		box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 		display: none;
 		text-align: center;
+		cursor:pointer;
 		i{
 			vertical-align: middle;
+			line-height:60px;
 		}
 	}
 	.never_tweeted{
@@ -493,6 +529,14 @@ header{
 					.user_actions{
 						margin-top: 15px;
 						.favorite{
+							float:left;
+							display:block;
+							line-height:18px;
+
+							p{
+								margin-left:3px;
+							}
+
 							&:hover{								
 								color: $grey_font;
 							}								
@@ -580,17 +624,35 @@ header{
 				margin: 0 auto;
 				margin-bottom: 50px;
 			}
+			.follow_check{
+				position: relative;
+				max-width: 120px;
+				margin: 0 auto;
+				i{
+					position: absolute;
+					right: 0;
+					top: 17px;
+					color: $green;
+				}
+
+			}
 			.follow{
 				color: #fff;
 				padding: 15px 40px;
 				background-color: $yellow;
 				border-bottom:5px solid darken($yellow,10%);
+				@include transition(all .5s);
+				&:hover{
+					background-color: darken($yellow, 10%);
+					border-bottom:5px solid darken($yellow,20%);
+					@include transition(all .5s);
+				}
 			}
 			.unfollow{
 				background-color: #60d4d4;
 				color: $green;
 				&:hover{
-					content:'unfollow';
+					cursor: pointer;
 				}
 			}
 		}
@@ -782,11 +844,9 @@ header{
 		position: absolute;
 		z-index: 9999;
 		top: -70%;
-		left: 50%;
 		margin:0 auto;
-		margin-left: -35%;
 		display:none;
-		width: 70%;
+		width: 100%;
 		background: #fff;
 		box-sizing: border-box;
 		overflow: auto;
@@ -805,6 +865,14 @@ header{
 			display: none
 		}
 		.edit_profile_box{
+			background: rgba(255,255,255,1);
+			background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 53%, rgba(246,244,244,1) 51%, rgba(246,244,244,1) 100%);
+			background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(53%, rgba(255,255,255,1)), color-stop(51%, rgba(246,244,244,1)), color-stop(100%, rgba(246,244,244,1)));
+			background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 53%, rgba(246,244,244,1) 51%, rgba(246,244,244,1) 100%);
+			background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 53%, rgba(246,244,244,1) 51%, rgba(246,244,244,1) 100%);
+			background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 53%, rgba(246,244,244,1) 51%, rgba(246,244,244,1) 100%);
+			background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 53%, rgba(246,244,244,1) 51%, rgba(246,244,244,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f4f4', GradientType=0 );
 			input,button,textarea{
 				border: none;
 				width: 100%;
@@ -833,7 +901,7 @@ header{
 				float: right;
 				padding: 7px 38px;
 				margin-bottom: 35px;
-				margin-top: 10px;
+				margin-top: 50px;	
 				@include transition(all .5s);
 				&:hover{
 					background-color: darken($green,10%);
@@ -845,10 +913,13 @@ header{
 			.hint{
 				color: $green;
 			}
-
 		}
 	}
 	.grey{
+		padding-top: 25px;
+		&:before{
+		background-color: $grey;	
+		}
 		background-color: $grey;
 		h2{
 			color: #cac8c8;
@@ -876,6 +947,11 @@ header{
 	}
 }
 .close_modal{
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 40px;
+	color: #fff;
+	font-size: 24px;
 	&:hover{
 		cursor: pointer;
 	}
@@ -927,8 +1003,14 @@ header{
 
 
 @media (min-width: 700px) {
-	.container{
+	.container,{
 		width: 700px;
+	}
+	.modal_edit_profile{
+		box-sizing:border-box;
+		width: 700px !important;
+		left:50% !important;
+		margin-left:-350px !important;
 	}
 	.edit_profile_container{
 		margin:0 auto;

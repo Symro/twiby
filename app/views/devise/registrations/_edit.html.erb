@@ -20,6 +20,8 @@
       <%= f.label :avatar, class: ''  %>
       <%= f.file_field :avatar, required: false %>
 
+      <div class="grey">
+        
         <h2 class="title">Change your password</h2>
 
         <h2>New password</h2>
@@ -29,6 +31,9 @@
         <h2>Current password to save changes*</h2>
         <%= f.input :current_password, hint: 'we need your current password to confirm your changes', required: true %>
 
+
+        
+      </div>
 
 
     <div class="form-actions">
