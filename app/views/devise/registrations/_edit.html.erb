@@ -19,12 +19,9 @@
       <h2>AVATAR</h2>
       <%= f.label :avatar, class: ''  %>
       <%= f.file_field :avatar, required: false %>
-    </div>
-</div>
-<div class="grey">
-  <div class="edit_profile_container ">
-    <div class="form-inputs">
 
+      <div class="grey">
+        
         <h2 class="title">Change your password</h2>
 
         <h2>New password</h2>
@@ -33,16 +30,17 @@
         <%= f.input :password_confirmation, required: false %>
         <h2>Current password to save changes*</h2>
         <%= f.input :current_password, hint: 'we need your current password to confirm your changes', required: true %>
-      </div>
-    </div>  
-</div>
 
-<div class="edit_profile_container">
+
+        
+      </div>
+
 
     <div class="form-actions">
       <%= f.button :submit, 'Apply' ,class: 'edit_confirm' %>
     </div>
   <% end %>
+</div>
 
   
 </div>

@@ -1,11 +1,11 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-user1 = User.create(email: 'user1@twiby.fr', username:'Augustin',   password:'123456789')
-user2 = User.create(email: 'user2@twiby.fr', username:'Florent',    password:'123456789')
-user3 = User.create(email: 'user3@twiby.fr', username:'Alexandre',  password:'123456789')
-user4 = User.create(email: 'user4@twiby.fr', username:'Sylvain',    password:'123456789')
-user5 = User.create(email: 'user5@twiby.fr', username:'Audrey',     password:'123456789')
+user1 = User.create(email: 'user1@twiby.fr', username:'Augustin',   password:'123456789', description: "Hells yeah, it's me!")
+user2 = User.create(email: 'user2@twiby.fr', username:'Florent',    password:'123456789', description: "Lasagna-loving, dog-punting, Monday hating, fat cat. Paws, Inc.")
+user3 = User.create(email: 'user3@twiby.fr', username:'Alexandre',  password:'123456789', description: "Get ready for a smurfastic good time full of surprises!")
+user4 = User.create(email: 'user4@twiby.fr', username:'Sylvain',    password:'123456789', description: "I'm the Jax Teller who runs SAMCRO, i'm a bad ass")
+user5 = User.create(email: 'user5@twiby.fr', username:'Audrey',     password:'123456789', description: "Hodor hodor hodor. Hodor.")
 
 # TOUS SUIVENT USER1 (AUGUSTIN)
 user2_follower_of_user1 = Follow.create(follower_id:user2.id , followed_id:user1.id)
