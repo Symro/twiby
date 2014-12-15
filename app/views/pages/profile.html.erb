@@ -183,10 +183,15 @@
     	    <% end %>
     	</div>
 
-    	<p class="users_twib twibs active"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
-        <% if current_user and @user.id === current_user.id %>
-            <p class="users_twib favorites">My Favorites <span class="users_nb_twib">- <%= current_user.favorites.count %></span></p>
-        <% end %>
+
+		<div class="switch_twib">
+			<p class="users_twib twibs active"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
+		    <% if current_user and @user.id === current_user.id %>
+		        <p class="users_twib favorites">My Favorites <span class="users_nb_twib">- <%= current_user.favorites.count %></span></p>
+		    <% end %>	
+		</div>
+
+
 
 	    <div class="container_yell">
             <%= render 'pages/favorites' %>
@@ -236,7 +241,9 @@
 		  			    <p> There's nothing to show to you yet. </p>
 		  			</div>				
 				<% end %>
-				<div class="yell_it_btn"></div>
+				<div class="yell_it_btn">
+					<i class="icon-megaphone"></i>
+				</div>
 			</ul>
 		</div>
 	</div>

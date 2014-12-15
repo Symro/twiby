@@ -309,22 +309,18 @@ header{
 	.yell_it_btn{
 		position: fixed;
 		border-radius: 50px;
+		color:$red;
+		font-size: 32px;
+		background-color:$yellow_dark;
 		width: 43px;
 		height: 43px;
 		bottom: 50px;
 		right: 20px;	
 		box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 		display: none;
-
-		&:after{
-			content:"";
-			position:absolute;
-			left:0; top:0;
-			background-image: url(/logo-big.png);
-			background-size: 100%;
-			background-repeat: no-repeat;
-			width: 50px;
-			height: 50px;
+		text-align: center;
+		i{
+			vertical-align: middle;
 		}
 	}
 	.never_tweeted{
@@ -538,12 +534,14 @@ header{
 		}
 		.header_profil_user{
 			display: flex;
+			margin: auto;
 			margin-bottom: 20px;
+			max-width: 220px;
 			i{
-				border: 1px solid #fff;
+				border: 2px solid #fff;
 				border-radius:50px;
 				padding:10px;
-				margin-top: 10px;
+				margin-top: -15px;
 			}
 			.user_logout, .user_edit_profile{
 				flex:1;
@@ -591,6 +589,9 @@ header{
 			.unfollow{
 				background-color: #60d4d4;
 				color: $green;
+				&:hover{
+					content:'unfollow';
+				}
 			}
 		}
 		.follow{
@@ -638,14 +639,23 @@ header{
 	background-color: $grey;
 
 }
-.users_twib{
+.switch_twib{
 	text-align:center;
-	color:$grey_font;
-	text-transform:uppercase;
-	margin-bottom:40px;
-	.users_nb_twib{
-		color: $grey_element_yell;
+	margin-bottom: 30px;
+	p{
+		display: inline;
 	}
+	.users_twib{
+		text-align:center;
+		color:$grey_font;
+		text-transform:uppercase;
+		margin-bottom:40px;
+		.users_nb_twib{
+			color: $grey_element_yell;
+		}
+	}
+
+
 }
 
 .modal_box{
@@ -768,7 +778,7 @@ header{
 	}
 	.modal_edit_profile{
 		padding: 0;
-		height: 600px;
+		height: 440px;
 		position: absolute;
 		z-index: 9999;
 		top: -70%;
@@ -932,6 +942,12 @@ header{
 
 .yell_index .users_twib{
   cursor: pointer;
+  &:first-child{
+  	margin-right: 10px;
+  }
+  &:nth-child(2){
+  	margin-left: 10px;
+  }
 }
 .container_yell .favorites{
   display: none;
