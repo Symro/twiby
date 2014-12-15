@@ -99,10 +99,12 @@ $(document).ready(function(){
 
     //Follow hover
     $('.unfollow').mouseover(function () {
-    	$(this).val("Unfollow");
+    	$(this).val("Unfollow").css("color","#ee5043");
+    	$('.icon-check').fadeOut(100);
     });
     $('.unfollow').mouseleave(function () {
-    	$(this).val("Followed");
+    	$(this).val("Followed").css("color","#23ee83");
+    	$('.icon-check').fadeIn(100);
     });
 
     // Notice Error

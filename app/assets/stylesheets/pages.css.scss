@@ -92,11 +92,13 @@ $red:#ee5043;
 
 .icon-trash:before {content: "\74";}
 .icon-star:before {content: "\73";}
+.icon-search:before {content: "\72";}
 .icon-perso:before {content: "\70";}
 .icon-off:before {content: "\6f";}
-.icon-edit:before {content: "\65";}
-.icon-check:before {content: "\63";}
 .icon-megaphone:before {content: "\6d";}
+.icon-edit:before {content: "\65";}
+.icon-cross:before {content: "\63";}
+.icon-check:before {content: "\68";}
 
 .icon-star.active,
 .icon-star:hover{
@@ -860,7 +862,7 @@ header{
 				float: right;
 				padding: 7px 38px;
 				margin-bottom: 35px;
-				margin-top: 50px;
+				margin-top: 50px;	
 				@include transition(all .5s);
 				&:hover{
 					background-color: darken($green,10%);
@@ -872,7 +874,6 @@ header{
 			.hint{
 				color: $green;
 			}
-
 		}
 	}
 	.grey{
@@ -907,6 +908,11 @@ header{
 	}
 }
 .close_modal{
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 40px;
+	color: #fff;
+	font-size: 24px;
 	&:hover{
 		cursor: pointer;
 	}
