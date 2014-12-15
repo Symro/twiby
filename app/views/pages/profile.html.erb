@@ -17,26 +17,21 @@
         </div>
         <div class="right_part">
             <% if user_signed_in? %>
-                <div class="profile_button">
-                    
+                <div class="profile_button">                    
                     <%= link_to profile_id_path(current_user.id) do %>
-							<i class="icon-perso"></i>MY PROFILE
+						<i class="icon-perso"></i>MY PROFILE
                     <% end %>
                 </div>
-
             <% end %>
         </div>
 
         <div class="profile_user clear ">
         	<div class="header_profil_user">
 	          	<div class="user_logout">
-
-
-    	          		   <i class="icon-off"></i>
-
+		   		   <i class="icon-off"></i>
 	          	</div>
 	        	<div class="user_picture">
-	        			<%= image_tag(@user.avatar.url(:medium)) %>
+	        		<%= image_tag(@user.avatar.url(:medium)) %>
 	        	</div>
 	        	<div class="user_edit_profile">
                     <% if current_user and @user.id == current_user.id %>
@@ -65,12 +60,11 @@
                           <%= f.error_notification %>
 
                           <%= f.input_field :followed_id, as: :hidden, :value => @user.id %>
-
-                          <%= f.button :submit, "Followed", class: 'unfollow' do %>
-                                <i class="icon-check"></i>
-                          <% end %>
+							<div class="follow_check">
+								<%= f.button :submit, "Followed", class: 'unfollow' %>
+								    <i class="icon-check"></i>
+							</div>                          
                         <% end %>
-
                     <% else %>
 
                         <%= simple_form_for @follow do |f| %>
@@ -82,7 +76,6 @@
                             <%= f.button :submit, "Follow", class: 'follow' %>
 
                         <% end %>
-
                     <% end %>
                 <% end %>
 			</div>
@@ -185,7 +178,7 @@
 
 
 		<div class="switch_twib">
-			<p class="users_twib twibs active"><%= (current_user and @user.id == current_user.id)? "My" : "Her" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
+			<p class="users_twib twibs active"><%= (current_user and @user.id == current_user.id)? "My" : @user.username+"'s" %> Twibs <span class="users_nb_twib">- <%= @user_tweet.count  %></span></p>
 		    <% if current_user and @user.id === current_user.id %>
 		        <p class="users_twib favorites">My Favorites <span class="users_nb_twib">- <%= current_user.favorites.count %></span></p>
 		    <% end %>	

@@ -97,6 +97,14 @@ $(document).ready(function(){
         }
     });
 
+    //Follow hover
+    $('.unfollow').mouseover(function () {
+    	$(this).val("Unfollow");
+    });
+    $('.unfollow').mouseleave(function () {
+    	$(this).val("Followed");
+    });
+
     // Notice Error
     var flash_message = $('.flash_message');
     if( flash_message.data("type") != "" ){
