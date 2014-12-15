@@ -28,7 +28,9 @@
         <div class="profile_user clear ">
         	<div class="header_profil_user">
 	          	<div class="user_logout">
-		   		   <i class="icon-off"></i>
+	          		<% if current_user and @user.id == current_user.id %>
+		   		   		<i class="icon-off"></i>
+	   		   		<% end %>
 	          	</div>
 	        	<div class="user_picture">
 	        		<%= image_tag(@user.avatar.url(:medium)) %>
