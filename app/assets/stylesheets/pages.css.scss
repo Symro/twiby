@@ -1019,6 +1019,22 @@ header{
 }
 
 
+@media (max-width: 600px) {
+	.container,{
+		.right_part{
+			margin-bottom: 30px;
+			.profile_button{
+				display: block;
+				margin-top: 60px;
+				text-align: center;
+			}
+			.search_bar{
+				margin-right: 0;
+			}
+		}
+	}
+}
+
 
 // Ajouts Sylvain
 
