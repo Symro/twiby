@@ -36,7 +36,7 @@ gem 'simple_form', '~> 3.1.0'
 #Paperclip
 gem 'paperclip', '~> 4.1'
 
-group :development do
+group :development, :test do
   gem 'sqlite3'
 end
 group :production do
